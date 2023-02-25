@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 
 const API_URL = "http://localhost:5000"
+const kuki = "restes"
 
 function App() {
 
