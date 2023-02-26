@@ -1,39 +1,43 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link, BrowserRouter } from "react-router-dom";
 import axios from 'axios';
 import { Container, Row, Col } from 'reactstrap';
 
-import Home from './Home';
-import About from './About';
-import Test from './Test';
+import Home from './pages/Home';
+import NotFound from './pages/NotFound';
+import About from './pages/About';
+import Test from './pages/Test';
 import Post from './Post';
-import Header from './Header';
+import Header from './pages/Header';
 import LeftCard from './LeftCard';
-import Signup from './Signup';
-import Login from './Login';
-import Booking from './Booking';
+import Signup from './pages/Signup';
+import Login from './pages/Login';
+import Booking from './pages/Booking';
 
 const API_URL = "http://localhost:5000";
 
 const App = () => (
-  <Fragment>
-  
-    <Header />
-    
-    <main className="my-5 py-5">
-      <Container className="px-0">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="about" element={<About />} />
-          <Route path="test" element={<Test api_url={API_URL}/>} />
-          <Route path="signup" element={<Signup />} />
-          <Route path="login" element={<Login />} />
-          <Route path="booking" element={<Booking />} />
-        </Routes>
-      </Container>
-    </main>
-    
-  </Fragment>
+  <BrowserRouter>
+    <Fragment>
+      
+      <Header />
+      
+      <main className="my-5 py-5">
+        <Container className="px-0">
+          <Routes>   
+            <Route path="/" exact element={<Home />} />
+            <Route path="about" element={<About />} />
+            <Route path="test" element={<Test api_url={API_URL}/>} />
+            <Route path="signup" element={<Signup />} />
+            <Route path="login" element={<Login />} />
+            <Route path="booking" element={<Booking />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Container>
+      </main>
+      
+    </Fragment>
+  </BrowserRouter>
 );
 
 export default App;

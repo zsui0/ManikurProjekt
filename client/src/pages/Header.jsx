@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from './icons/logos.svg';
+import logo from '../icons/logos.svg';
 
 import {
   Container, Row, Col, Form, Input, Button, Navbar, Nav,
@@ -20,7 +20,7 @@ const Header = () => (
             
               <NavItem className="d-flex align-items-center">
                 <NavLink className="font-weight-bold" href="/profile">
-                  <img src={require('./icons/user.png')} alt="avatar" className="img-fluid rounded-circle" style={{ width: 36 }} />
+                  <img src={require('../icons/user.png')} alt="avatar" className="img-fluid rounded-circle" style={{ width: 36 }} />
                 </NavLink>
               </NavItem>
               
