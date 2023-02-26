@@ -9,7 +9,7 @@ import Test from './Test';
 import Post from './Post';
 import Header from './Header';
 import LeftCard from './LeftCard';
-import Registration from './Registration';
+import Signup from './Signup';
 import Login from './Login';
 import Booking from './Booking';
 
@@ -26,7 +26,7 @@ const App = () => (
           <Route path="/" element={<Home />} />
           <Route path="about" element={<About />} />
           <Route path="test" element={<Test api_url={API_URL}/>} />
-          <Route path="registration" element={<Registration />} />
+          <Route path="signup" element={<Signup />} />
           <Route path="login" element={<Login />} />
           <Route path="booking" element={<Booking />} />
         </Routes>

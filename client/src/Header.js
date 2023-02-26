@@ -59,7 +59,7 @@ const Header = () => (
 
           <Col className="d-none d-lg-flex justify-content-end">
             <Nav>
-              <NavLink className="font-weight-bold" href="/registration">Regisztráció</NavLink>
+              <NavLink className="font-weight-bold" href="/signup">Regisztráció</NavLink>
               <NavLink className="font-weight-bold" href="/login">Bejelentkezés</NavLink>
             </Nav>
           </Col>
