@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify, session
 from flask_bcrypt import Bcrypt
 from flask_session import Session
+from flask_cors import CORS, cross_origin
 from config import ApplicationConfig
 from models import db, User
 
@@ -8,8 +9,11 @@ app = Flask(__name__)
 app.config.from_object(ApplicationConfig)
 
 bcrypt = Bcrypt(app)
+CORS(app, supports_credentials=True)
 server_session = Session(app)
 db.init_app(app)
+
+
 
 with app.app_context():
     db.create_all()
@@ -26,6 +30,7 @@ def get_current_user():
         "id": user.user_id,
         "email": user.user_email
     })
+
 
 @app.route("/register", methods=["POST"])
 def register_user():

@@ -25,7 +25,7 @@ const App = () => (
       <main className="my-5 py-5">
         <Container className="px-0">
           <Routes>   
-            <Route path="/" exact element={<Home />} />
+            <Route path="/" element={<Home />} />
             <Route path="about" element={<About />} />
             <Route path="test" element={<Test api_url={API_URL}/>} />
             <Route path="signup" element={<Signup />} />
