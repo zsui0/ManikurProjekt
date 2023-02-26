@@ -43,13 +43,15 @@ def register_user():
 
     first_name = request.json["first"]
     last_name = request.json["last"]
-    user_name = request.json["name"]
+    user_name = request.json["username"]
     user_role = request.json["role"]
 
     hashed_password = bcrypt.generate_password_hash(user_pass)
     new_user = User(user_email=user_email, user_pass=hashed_password,first_name=first_name,last_name=last_name,user_name=user_name,user_role=user_role)
     db.session.add(new_user)
     db.session.commit()
+
+    session["user_id"] = new_user.user_id
 
     return jsonify({
         "id": new_user.user_id,
@@ -74,6 +76,11 @@ def login_user():
         "id": user.user_id,
         "email": user.user_email
     })
+
+@app.route("/logout", methods=["POST"])
+def logout_user():
+    session.pop("user_id")
+    return "200"
 
 
 if __name__ == "__main__":

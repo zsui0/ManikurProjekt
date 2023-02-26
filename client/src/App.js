@@ -12,6 +12,7 @@ import Header from './pages/Header';
 import LeftCard from './LeftCard';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
+import Logout from './pages/Logout';
 import Booking from './pages/Booking';
 
 const API_URL = "http://localhost:5000";
@@ -30,6 +31,7 @@ const App = () => (
             <Route path="test" element={<Test api_url={API_URL}/>} />
             <Route path="signup" element={<Signup />} />
             <Route path="login" element={<Login />} />
+            <Route path="logout" element={<Logout />} />
             <Route path="booking" element={<Booking />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
