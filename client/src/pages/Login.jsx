@@ -18,11 +18,7 @@ const Login = () => {
       if(error.response.status === 401){
         alert("Invalid credentials");
       }
-    }
-
-    
-
-    
+    } 
   };
   
   return (

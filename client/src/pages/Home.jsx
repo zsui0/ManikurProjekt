@@ -11,10 +11,7 @@ const Home = () => {
         setUser(resp.data);
       } catch (error) {
         console.log("Not authenticated!");
-      }
-      
-      
-      
+      } 
     })();
   }, []);
 
