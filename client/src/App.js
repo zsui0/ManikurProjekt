@@ -1,34 +1,47 @@
-import React, {useState, useEffect} from 'react'
+import React, { Fragment, useState, useEffect } from 'react';
+import { Routes, Route, Link, BrowserRouter } from "react-router-dom";
+import axios from 'axios';
+import { Container, Row, Col } from 'reactstrap';
+import httpClient from './httpClient';
 
-const API_URL = "http://localhost:5000"
-const kuki = "restes"
 
-function App() {
+import Home from './pages/Home';
+import NotFound from './pages/NotFound';
+import About from './pages/About';
+import Test from './pages/Test';
+import Profile from './pages/Profile';
+import Post from './Post';
+import Header from './pages/Header';
+import LeftCard from './LeftCard';
+import Signup from './pages/Signup';
+import Login from './pages/Login';
+import Logout from './pages/Logout';
 
-  const[data,setData] = useState([{}])
-  
-  useEffect(()=>{
-    fetch(API_URL+"/members").then(
-      res => res.json()
-    ).then(
-      data => {
-        setData(data)
-        console.log(data)
-      }
-    )
-  }, [])
+const API_URL = "http://localhost:5000";
 
-  return (
-    <div>
-      {(typeof data.members === "undefined") ? (
-        <p>Loading...</p>
-      ) : (
-          data.members.map((member,i) => (
-            <p key={i}>{member}</p>
-          ))
-      )}
-    </div>
-  )
-}
+const App = () => (
 
-export default App
+<BrowserRouter>
+      <Fragment>
+        <Header />
+        
+        <main className="my-5 py-5">
+          <Container className="px-0">
+            <Routes>   
+              <Route path="/" element={<Home />} />
+              <Route path="profile" element={<Profile />}/>
+              <Route path="about" element={<About />} />
+              <Route path="test" element={<Test api_url={API_URL}/>} />
+              <Route path="signup" element={<Signup />} />
+              <Route path="login" element={<Login />} />
+              <Route path="logout" element={<Logout />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Container>
+        </main>
+        
+      </Fragment>
+    </BrowserRouter>
+    
+);
+export default App;
