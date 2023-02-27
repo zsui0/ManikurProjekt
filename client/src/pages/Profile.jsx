@@ -3,7 +3,7 @@ import React from 'react';
 const Profile = () => {
   return (
     <div>
-      <h1>Fiók</h1>
+      <h1>Fiók Minta</h1>
     </div>
   );
 };
