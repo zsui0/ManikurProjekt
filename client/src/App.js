@@ -16,15 +16,12 @@ import LeftCard from './LeftCard';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Logout from './pages/Logout';
-import Booking from './pages/Booking';
 
 const API_URL = "http://localhost:5000";
 
-
-
 const App = () => (
 
-    <BrowserRouter>
+<BrowserRouter>
       <Fragment>
         <Header />
         
@@ -38,7 +35,6 @@ const App = () => (
               <Route path="signup" element={<Signup />} />
               <Route path="login" element={<Login />} />
               <Route path="logout" element={<Logout />} />
-              <Route path="booking" element={<Booking />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Container>
@@ -46,6 +42,6 @@ const App = () => (
         
       </Fragment>
     </BrowserRouter>
+    
 );
-
 export default App;
