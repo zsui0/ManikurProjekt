@@ -9,6 +9,7 @@ import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import About from './pages/About';
 import Test from './pages/Test';
+import Profile from './pages/Profile';
 import Post from './Post';
 import Header from './pages/Header';
 import LeftCard from './LeftCard';
@@ -31,6 +32,7 @@ const App = () => (
           <Container className="px-0">
             <Routes>   
               <Route path="/" element={<Home />} />
+              <Route path="profile" element={<Profile />}/>
               <Route path="about" element={<About />} />
               <Route path="test" element={<Test api_url={API_URL}/>} />
               <Route path="signup" element={<Signup />} />
