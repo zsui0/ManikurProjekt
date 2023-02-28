@@ -34,11 +34,7 @@ const Header = () => {
               <Col className="d-none d-lg-flex justify-content-start">
                 <Nav className="mrx-auto" navbar>
                 
-                  <NavItem className="d-flex align-items-center">
-                    <NavLink className="font-weight-bold" href="/profile">
-                      <img src={require('../icons/user.png')} alt="avatar" className="img-fluid rounded-circle" style={{ width: 36 }} />
-                    </NavLink>
-                  </NavItem>
+                  
                   
                   <NavItem className="d-flex align-items-center">
                     <NavLink className="font-weight-bold" href="/test">Test</NavLink>
@@ -48,14 +44,12 @@ const Header = () => {
                     <NavLink className="font-weight-bold" href="/booking">Időpont foglalás</NavLink>
                   </NavItem>
                   
-                  <UncontrolledDropdown className="d-flex align-items-center" nav inNavbar>
+                  <UncontrolledDropdown className="d-flex align-items-center" direction="down">
                     <DropdownToggle className="font-weight-bold" nav caret>Ékszerek</DropdownToggle>
-                    <DropdownMenu end>
-                      <DropdownItem className="font-weight-bold text-secondary text-uppercase" header disabled>Learn React</DropdownItem>
-                      <DropdownItem divider />
-                      <DropdownItem>Gyűrű</DropdownItem>
-                      <DropdownItem>Nyaklánc</DropdownItem>
-                      <DropdownItem>Egyéb</DropdownItem>
+                    <DropdownMenu>
+                      <DropdownItem href="/gyuru">Gyűrű</DropdownItem>
+                      <DropdownItem href="/nyaklanc">Nyaklánc</DropdownItem>
+                      <DropdownItem href="/egyeb">Egyéb</DropdownItem>
                     </DropdownMenu>
                   </UncontrolledDropdown>
 
@@ -76,7 +70,12 @@ const Header = () => {
               <Col className="d-none d-lg-flex justify-content-end">
                 {user != null ? (
                   <Nav>
-                    <NavLink className="font-weight-bold" href="/logout">Kijelentkezés</NavLink>
+                    <NavLink className="font-weight-bold d-flex align-items-center" href="/logout">Kijelentkezés</NavLink>
+                    <NavItem className="d-flex align-items-center">
+                      <NavLink className="font-weight-bold" href="/profile">
+                      <img src={require('../icons/user.png')} alt="avatar" className="img-fluid rounded-circle" style={{ width: 40 }} />
+                      </NavLink>
+                    </NavItem>
                   </Nav>
                 ) : (
                   <Nav>
@@ -84,6 +83,7 @@ const Header = () => {
                     <NavLink className="font-weight-bold" href="/login">Bejelentkezés</NavLink>
                   </Nav>
                 )}
+
               </Col>
               
             </Row>
