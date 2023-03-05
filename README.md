@@ -1,4 +1,4 @@
-# ManikurProjekt\
+# ManikurProjekt
 
 Fontos parancsok:\
   #npm run devStart : backend szerver indítás dev módban, változtatáskor frissití magát\
