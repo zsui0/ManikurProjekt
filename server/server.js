@@ -1,5 +1,18 @@
+require('dotenv').config()
+
 const express = require('express')
+const mongoose = require('mongoose')
 const app = express()
+
+/*
+    mongodb name1: backend-server, password: U3bYIj1nb9l3ly4P 
+            name2: admin, pass: CfX1HRJGgCYOkQNR
+    mongodb+srv://<username>:<password>@manikur.h20qhig.mongodb.net/?retryWrites=true&w=majority
+*/
+
+
+
+const db = connect();
 
 app.use(express.static("public")) // automatically use public folder files for static page rendering, you can access/open files in http line : 'apiHttp'/test/test.html
 app.use(express.urlencoded({ extended: true })) // allow access information coming from Forms
@@ -21,11 +34,24 @@ app.set('view engine', 'ejs') // for rendering html (ejs or pug), download exten
 
 const userRouter = require('./routes/users')
 
-app.user('/users',userRouter)
+app.use('/users',userRouter)
 
 function logger(req, res, next){ // middleware logger
   console.log(req.originalUrl)
   next()
 }
 
-app.listen(5000)
+async function connect() { // MongoDB connection
+  try {
+    await mongoose.connect(process.env.DATABASE_URI)
+    console.log("Connected to MongoDB");
+    return mongoose.connection
+  } catch(error) {
+    console.error(error)
+    return "error"
+  }
+}
+
+app.listen(process.env.PORT, () => { // Start backend
+  console.log(`Server started on port ${process.env.PORT}`)
+})
