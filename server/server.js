@@ -10,8 +10,6 @@ const app = express()
     mongodb+srv://<username>:<password>@manikur.h20qhig.mongodb.net/?retryWrites=true&w=majority
 */
 
-
-
 const db = connect();
 
 app.use(express.static("public")) // automatically use public folder files for static page rendering, you can access/open files in http line : 'apiHttp'/test/test.html

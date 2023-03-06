@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router() 
+const bcrypt = require('bcrypt')
 const User = require('../models/user')
 
 router.use(logger)
@@ -18,17 +19,21 @@ router.get('/:id', getUser, (req, res) => {
   res.json(res.user)
 })
 //Creating one
-router.post('/', async (req, res) => { 
-  const user = new User({
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    userName: req.body.userName,
-    email: req.body.email,
-    password: req.body.password
-  })
+router.post('/', async (req, res) => {   
   try {
+    const hashedPassword = await bcrypt.hash(req.body.password, 10) // 10 -> salt
+
+    const user = new User({
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      userName: req.body.userName,
+      email: req.body.email,
+      password: hashedPassword
+    })
+
     const newUser = await user.save()
     res.status(201).json(newUser) // 201: successfuly created an object
+
   } catch (error) {
     res.status(400).json({message: err.message}) // 400: wrong with the user input
   }
