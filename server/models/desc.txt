@@ -1,0 +1,1 @@
+Model mappában az adatbázis collection modelleket (tábla szerekezetet) készítjük el 
