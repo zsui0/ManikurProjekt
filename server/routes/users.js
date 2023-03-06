@@ -61,6 +61,24 @@ router.delete('/:id', getUser, async (req, res) => {
   }
 })
 
+router.post('/login', async (req, res) => {
+  let user
+  try {
+    user = await User.findOne({email: req.body.email})
+    if(user == null) {
+      return res.status(404).json({message: "Cannot find user"})
+    }
+    
+    if(await bcrypt.compare(req.body.password, user.password)) {
+      res.status(200).json({message: "Success"})
+    } else {
+      res.status(406).json({message: "Not Allowed"})
+    }
+  } catch (error) {
+    
+  }
+})
+
 async function getUser(req, res, next) {
   let user
   try {
