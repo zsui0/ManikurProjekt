@@ -41,7 +41,7 @@ return (
               <Route path="/" element={<Home currentUser={currentUser} />} />
               <Route path="profile" element={<Profile currentUser={currentUser} />}/>
               <Route path="about" element={<About />} />
-              <Route path="booking" element={<Booking />} />
+              <Route path="booking" element={<><Booking /><BookingForm/></>} />
               <Route path="signup" element={<Signup />} />
               <Route path="login" element={<Login />} />
               <Route path="*" element={<NotFound />} />

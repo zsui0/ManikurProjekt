@@ -11,6 +11,7 @@ return(
 <div>
     <label>Válassza ki a szolgáltatást:
         <select id="service" onChange={(e) => setServiceName(e.target.value)}>
+            <option value="">Válassza ki a szolgáltatást</option>
             <option value="Saját köröm erősítés">Saját köröm erősítés</option>
             <option value="Műkörömépítés">Műkörömépítés</option>
             <option value="Gél lakkozás">Gél lakkozás</option>
@@ -22,6 +23,7 @@ return(
     </label>
     <label>Válassza ki a kívánt időpontot:
         <select id="time" onChange={(e) => setStartTime(e.target.value)}>
+        <option value="">Válassza ki az időpontot</option>
             <option value="8:00">8:00</option>
             <option value="8:30">8:30</option>
             <option value="9:00">9:00</option>
