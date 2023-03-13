@@ -37,7 +37,7 @@ return(
             <option value="Japán manikűr">Japán manikűr</option>
         </select>
     </label>
-    <input type="datetime-local" onChange={(DateTime) => setStartDate(DateTime.target.value)}/>
+    <input type="datetime-local" min="2023-03-14T08:00" max="2023-12-12T19:30" onChange={(DateTime) => setStartDate(DateTime.target.value)}/>
     <button type="button" onClick={() => createBooking()}>Foglalás</button>
 </div>
 );

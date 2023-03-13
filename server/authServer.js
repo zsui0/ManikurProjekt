@@ -56,7 +56,7 @@ app.delete('logout', (req, res) => {
 })
 
 function generateAccessToken(user) {
-  return jwt.sign(user.toJSON(), process.env.ACCESS_TOKEN_SECRET, { expiresIn: '5h' })
+  return jwt.sign(user.toJSON(), process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1h' })
 }
 
 function logger(req, res, next){ // middleware logger
