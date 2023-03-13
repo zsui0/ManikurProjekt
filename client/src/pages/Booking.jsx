@@ -10,11 +10,11 @@ import withDragAndDrop from 'react-big-calendar/lib/addons/dragAndDrop'
 // to the correct localizer.
 const localizer = momentLocalizer(moment) // or globalizeLocalizer
 
-const dnd = withDragAndDrop(Calendar)
 
-const Booking = (props) => (
+
+const dnd = (props) => (
   <div className="myCustomHeight" styles="height: 10">
-    <dnd
+    <Calendar
       localizer={localizer}      
       startAccessor="start"
       endAccessor="end"
@@ -22,7 +22,20 @@ const Booking = (props) => (
 </div>
 )
 
+const addEvent = (props) => (
+  <div>
+    FORM
+  </div>
+)
 
 
+const outPut = withDragAndDrop(dnd)
+
+const Booking = (props) => (
+    <div>
+      <outPut />
+      <addEvent />
+    </div> 
+)
   
 export default Booking;

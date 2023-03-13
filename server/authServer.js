@@ -7,12 +7,14 @@ const mongoose = require('mongoose')
 const jwt = require('jsonwebtoken')
 const User = require('./models/user')
 const bcrypt = require('bcrypt')
+const cors = require('cors')
 const app = express()
 const db = connect();
 
 app.use(express.static("public")) // automatically use public folder files for static page rendering, you can access/open files in http line : 'apiHttp'/test/test.html
 app.use(express.urlencoded({ extended: true })) // allow access information coming from Forms
 app.use(express.json()) // same as urlencoded just with json
+app.use(cors())
 
 let refreshTokens = [] // It would be better in database
 
@@ -39,7 +41,7 @@ app.post('/login', async (req, res) => {
       const accessToken = generateAccessToken(user)
       const refreshToken = jwt.sign(user.toJSON(), process.env.REFRESH_TOKEN_SECRET)
       refreshTokens.push(refreshToken)
-      res.status(200).json({message: "Success", accessToken: accessToken, refreshToken: refreshToken})
+      res.status(200).json({message: "Logged In", name: user.userName, accessToken: accessToken, refreshToken: refreshToken})
     } else {
       res.status(406).json({message: "Not Allowed"})
     }
@@ -54,7 +56,7 @@ app.delete('logout', (req, res) => {
 })
 
 function generateAccessToken(user) {
-  return jwt.sign(user.toJSON(), process.env.ACCESS_TOKEN_SECRET, { expiresIn: '10m' })
+  return jwt.sign(user.toJSON(), process.env.ACCESS_TOKEN_SECRET, { expiresIn: '5h' })
 }
 
 function logger(req, res, next){ // middleware logger
