@@ -14,30 +14,12 @@ import styles from '../styles/booking.css'
 // to the correct localizer.
 const localizer = momentLocalizer(moment) // or globalizeLocalizer
 
-const events = [
-  {
-    title: 'My Event',
-    start: new Date('2023-03-12T13:45:00'),
-    end: new Date('2023-03-12T16:00:00'),
-    isDraggable: true,
-    resizable: true,
-  },
-  {
-    title:'masodik',
-    start: new Date('2023-03-13T13:45:00'),
-    end: new Date('2023-03-13T16:00:00')
-  },
-  {
-    title:'Körömépítés',
-    start: new Date('2023-03-15T15:00:00'),
-    end: new Date('2023-03-15T18:00:00')
-  }
-]
-const today = new Date();
-const dnd = (props) => (
-  <div className="myCustomHeight" styles="height: 600">
-    <Calendar
-      localizer={localizer}    
+const dnd = withDragAndDrop(Calendar)
+
+const Booking = (props) => (
+  <div className="myCustomHeight" styles="height: 10">
+    <dnd
+      localizer={localizer}      
       startAccessor="start"
       endAccessor="end"
       //allDaySlot="false"
@@ -66,6 +48,7 @@ const dnd = (props) => (
 </div>
 )
 
-const Booking = withDragAndDrop(dnd) 
 
+
+  
 export default Booking;

@@ -3,6 +3,7 @@ import styles from '../styles/about.css'
 
 
 const About = () => {
+
   return (
     <>
     <div class="about">
