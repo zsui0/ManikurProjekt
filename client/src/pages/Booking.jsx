@@ -15,14 +15,30 @@ import styles from '../styles/booking.css'
 const localizer = momentLocalizer(moment) // or globalizeLocalizer
 
 const dnd = withDragAndDrop(Calendar)
+const today = new Date()
+const events = [
+  {
+    title: 'My Event',
+    start: new Date('2023-03-12T13:45:00'),
+    end: new Date('2023-03-12T16:00:00'),
+    isDraggable: true,
+    resizable: true,
+  },
+  {
+    title:'masodik',
+    start: new Date('2023-03-13T13:45:00'),
+    end: new Date('2023-03-13T16:00:00')
+  }
+]
+
+
 
 const Booking = (props) => (
   <div className="myCustomHeight" styles="height: 10">
-    <dnd
+    <Calendar
       localizer={localizer}      
       startAccessor="start"
       endAccessor="end"
-      //allDaySlot="false"
       events={events}
       draggableAccessor={(event) => true}
       defaultView={Views.WEEK}
