@@ -34,7 +34,7 @@ const App = () => (
               <Route path="profile" element={<Profile />}/>
               <Route path="about" element={<About />} />
               <Route path="test" element={<Test api_url={API_URL}/>} />
-              <Route path="booking" element={<><Booking /><BookingForm/></>} />
+              <Route path="booking" element={<><Booking /> <BookingForm/> </>} />
               <Route path="signup" element={<Signup />} />
               <Route path="login" element={<Login />} />
               <Route path="logout" element={<Logout />} />
