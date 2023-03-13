@@ -7,7 +7,7 @@ import React, { Fragment, useCallback, useMemo, useState } from 'react'
 import PropTypes from 'prop-types'
 //import { Calendar, Views, DateLocalizer } from 'react-big-calendar'
 import 'react-big-calendar/lib/addons/dragAndDrop/styles.scss'
-
+import styles from '../styles/booking.css'
 
 
 // Setup the localizer by providing the moment (or globalize, or Luxon) Object
@@ -40,6 +40,7 @@ const dnd = (props) => (
       localizer={localizer}    
       startAccessor="start"
       endAccessor="end"
+      //allDaySlot="false"
       events={events}
       draggableAccessor={(event) => true}
       defaultView={Views.WEEK}
