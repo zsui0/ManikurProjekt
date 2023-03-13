@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import DateTimePicker from 'react-datetime-picker';
 
 const BookingForm = () =>{
 const [serviceName, setServiceName] = useState ("");
-const [startTime, setStartTime] = useState ("");
-const [startDate, setStartDate] = useState(new Date());
+/* const [startTime, setStartTime] = useState (""); */
+const [startDate, setStartDate] = useState("");
 
 return(
 <div>
@@ -21,7 +22,7 @@ return(
             <option value="Japán manikűr">Japán manikűr</option>
         </select>
     </label>
-    <label>Válassza ki a kívánt időpontot:
+    {/* <label>Válassza ki a kívánt időpontot:
         <select id="time" onChange={(e) => setStartTime(e.target.value)}>
         <option value="">Válassza ki az időpontot</option>
             <option value="8:00">8:00</option>
@@ -43,9 +44,10 @@ return(
             <option value="16:00">16:00</option>
             <option value="16:30">16:30</option>            
         </select>
-    </label>
-    <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
-    <button type="button" onClick={console.log(serviceName)}>Foglalás</button>
+    </label> */}
+    <input type="datetime-local" onChange={(DateTime)=> setStartDate(DateTime.target.value)}/>
+    {/* <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} /> */}
+    <button type="button" onClick={console.log(startDate)}>Foglalás</button>
 </div>
 );
 };
