@@ -8,9 +8,9 @@ router.post('/', authenticateToken,  async (req, res) => {
   try{
     const appointment = new Booking({
       userId: req.user._id,
-      appointmentType: req.body.title,
-      beginDate: req.body.startDate,
-      endDate: req.body.endDate
+      title: req.body.title,
+      start: req.body.startDate,
+      end: req.body.endDate
     })
     const newBooking = await appointment.save();
     res.status(201).json(newBooking);
@@ -22,8 +22,8 @@ router.post('/', authenticateToken,  async (req, res) => {
 
 router.get('/', authenticateToken, async (req, res) => {
   try{
-    const bookings = await Booking.find().select('-_id appointmentType beginDate endDate')
-    res.status(200).json(bookings)
+    const bookings = await Booking.find().lean().select('-_id title start end')
+    res.status(200).json({result: bookings})
   } catch (error) {
     res.status(500).json({message: error.message})
   }

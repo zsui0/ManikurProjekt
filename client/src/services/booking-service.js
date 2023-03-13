@@ -16,8 +16,9 @@ const addEvent = (title, startDate) => {
 const getEvents = () => {
   return axios
     .get(API_URL+"/booking",{ headers: authHeader() })
-    .then((response) => {
-      console.log(response)
+    .then(response => {
+      //console.log(response.data.result)
+      return response.data.result;
     })
 }
 

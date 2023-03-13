@@ -5,15 +5,15 @@ const bookingSchema = new mongoose.Schema({
     type: mongoose.Types.ObjectId,
     required: true
   },
-  appointmentType: {
+  title: {
     type: String,
     required: true  
   },
-  beginDate: {
+  start: {
     type: Date,
     required: true 
   },
-  endDate: {
+  end: {
     type: Date,
     required: true 
   },
