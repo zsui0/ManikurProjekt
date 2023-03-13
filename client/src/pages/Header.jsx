@@ -54,7 +54,7 @@ const Header = () => {
                   </UncontrolledDropdown>
 
                   <NavItem className="d-flex align-items-center">
-                    <NavLink className="font-weight-bold" href="/about">Rólunk</NavLink>
+                    <NavLink className="font-weight-bold" href="/about">Rólam</NavLink>
                   </NavItem>
                   
                 </Nav>

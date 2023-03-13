@@ -9,13 +9,15 @@ const About = () => {
       <h1>Rólam</h1>
     </div>
     <div class="card">
-      <img src="https://media.istockphoto.com/id/1016761216/photo/portrait-concept.jpg?s=612x612&w=0&k=20&c=JsGhLiCeBZs7NeUY_3wjDlLfVkgDJcD9UCXeWobe7Ak=" alt="" style={{width: '50%'}}/>
+      <img src={require('../icons/bela.jpg')} alt="" style={{width: '50%'}}/>
       <div class="container">
-        <h2>Példa Pista</h2>
+        <h2>Körmös Béla</h2>
         <p class="title">Kisvállalkozó, műkörömépítő.</p>
-        <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-        <p>Email: pistapelda@gmail.com</p>
-        <p>Tel: 06 20 444 5555</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam cursus, turpis vitae rutrum lacinia, elit justo tempor ante, at ornare eros ante ac dolor. Maecenas pulvinar risus eu commodo consequat. Nunc est libero, ornare vel ipsum vitae, sollicitudin viverra ex. 
+           Vestibulum malesuada sapien quis ex imperdiet, sit amet elementum odio molestie.</p>
+        <p>Email: korombela@gmail.com</p>
+        <p>Telefon: 06 20 444 5555</p>
+        <p>Elhelyezkedés: Bélatelep, Toldi Miklós utca 51.</p>
       </div>
     </div>
     </>
