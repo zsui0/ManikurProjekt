@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import logo from '../icons/logos.svg';
-import httpClient from '../httpClient';
+import AuthService from '../services/auth.service';
 
 import {
   Container, Row, Col, Form, Input, Button, Navbar, Nav,
@@ -9,20 +9,11 @@ import {
 } from 'reactstrap';
 
 
-const Header = () => {
-  const [user, setUser] = useState(null);
+const Header = (user) => {
 
-  useEffect(() => {
-    (async() => {
-      try {
-        const resp = await httpClient.get("//localhost:5000/@me")
-        setUser(resp.data);
-      } catch (error) {
-        console.log("Not authenticated!");
-      }
-    })();
-  }, []);
-
+const logOut = () => {
+  AuthService.logout();
+}
 
   return (
     <header>
@@ -37,7 +28,7 @@ const Header = () => {
                   
                   
                   <NavItem className="d-flex align-items-center">
-                    <NavLink className="font-weight-bold" href="/test">Test</NavLink>
+                    <NavLink className="font-weight-bold" href="/">Főoldal</NavLink>
                   </NavItem>
                   
                   <NavItem className="d-flex align-items-center">
@@ -54,7 +45,7 @@ const Header = () => {
                   </UncontrolledDropdown>
 
                   <NavItem className="d-flex align-items-center">
-                    <NavLink className="font-weight-bold" href="/about">Rólunk</NavLink>
+                    <NavLink className="font-weight-bold" href="/about">Rólam</NavLink>
                   </NavItem>
                   
                 </Nav>
@@ -68,20 +59,20 @@ const Header = () => {
             
 
               <Col className="d-none d-lg-flex justify-content-end">
-                {user != null ? (
-                  <Nav>
-                    <NavLink className="font-weight-bold d-flex align-items-center" href="/logout">Kijelentkezés</NavLink>
-                    <NavItem className="d-flex align-items-center">
-                      <NavLink className="font-weight-bold" href="/profile">
-                      <img src={require('../icons/user.png')} alt="avatar" className="img-fluid rounded-circle" style={{ width: 40 }} />
-                      </NavLink>
-                    </NavItem>
-                  </Nav>
-                ) : (
+                {user.currentUser === undefined ? (
                   <Nav>
                     <NavLink className="font-weight-bold" href="/signup">Regisztráció</NavLink>
                     <NavLink className="font-weight-bold" href="/login">Bejelentkezés</NavLink>
                   </Nav>
+                ) : (
+                  <Nav>
+                    <NavLink className="font-weight-bold d-flex align-items-center" href="/login" onClick={logOut}>Kijelentkezés</NavLink>
+                    <NavItem className="d-flex align-items-center">
+                      <NavLink className="font-weight-bold" href="/profile">
+                      <img src={require('../icons/user.png')} alt="avatar" className="img-fluid rounded-circle" style={{ width: 40 }} />
+                      </NavLink>
+                  </NavItem>
+                </Nav>
                 )}
 
               </Col>

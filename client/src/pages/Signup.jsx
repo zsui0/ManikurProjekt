@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
-import httpClient from '../httpClient';  
+import React, {useState} from 'react'; 
+import AuthService from '../services/auth.service';
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
@@ -9,15 +10,22 @@ const Signup = () => {
   const [username, setUsername] = useState("");
   const [role, setRole] = useState("");
 
+  const navigate = useNavigate();
   
   const registerUser = async () => {
-
+    //e.preventDefault();
     try {
-      const resp = await httpClient.post("//localhost:5000/register",{
-        email, password, first, last, username, role
-      });
-
-      window.location.href = "/";
+      await AuthService.signup(email, password, first, last, username, role)
+        .then(
+          (response) => {
+            console.log(response)
+            navigate("/login");
+            window.location.reload();
+          },
+          (error) => {
+            console.log(error)
+          }
+      )
     } catch (error) {
       if(error.response.status === 401){
         alert("Invalid credentials");
