@@ -1,22 +1,22 @@
 const mongoose = require('mongoose')
 
-const appointmentSchema = new mongoose.Schema({
+const bookingSchema = new mongoose.Schema({
   userId: {
-    type: ObjectId,
+    type: mongoose.Types.ObjectId,
     required: true
   },
-  appointmentType: {
+  title: {
     type: String,
     required: true  
   },
-  beginDate: {
+  start: {
     type: Date,
     required: true 
   },
-  endDate: {
+  end: {
     type: Date,
     required: true 
   },
 })
 
-module.exports = mongoose.model('Appointment', appointmentSchema)
+module.exports = mongoose.model('Booking', bookingSchema)
