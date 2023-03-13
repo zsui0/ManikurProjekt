@@ -6,7 +6,7 @@ import withDragAndDrop from 'react-big-calendar/lib/addons/dragAndDrop'
 import React, { Fragment, useCallback, useMemo, useState } from 'react'
 import PropTypes from 'prop-types'
 //import { Calendar, Views, DateLocalizer } from 'react-big-calendar'
-//import 'react-big-calendar/lib/addons/dragAndDrop/styles.scss'
+import 'react-big-calendar/lib/addons/dragAndDrop/styles.scss'
 
 
 
@@ -19,8 +19,8 @@ const events = [
     title: 'My Event',
     start: new Date('2023-03-12T13:45:00'),
     end: new Date('2023-03-12T16:00:00'),
-    isDraggable: "true",
-    resizable: "true",
+    isDraggable: true,
+    resizable: true,
   },
   {
     title:'masodik',
