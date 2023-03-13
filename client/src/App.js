@@ -12,7 +12,6 @@ import Profile from './pages/Profile';
 import Header from './pages/Header';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
-import Logout from './pages/Logout';
 import BookingForm from './pages/BookingForm';
 
 const API_URL = "http://localhost:5000";
@@ -42,7 +41,6 @@ return (
               <Route path="/" element={<Home currentUser={currentUser} />} />
               <Route path="profile" element={<Profile currentUser={currentUser} />}/>
               <Route path="about" element={<About />} />
-              <Route path="test" element={<Test api_url={API_URL}/>} />
               <Route path="booking" element={<Booking />} />
               <Route path="signup" element={<Signup />} />
               <Route path="login" element={<Login />} />
