@@ -1,0 +1,1 @@
+Server-api utakat tárolja pl.: http://server-link:5000/users/id <- users.js fájl mintája (/users/id)

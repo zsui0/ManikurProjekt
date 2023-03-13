@@ -1,0 +1,1 @@
+Html fájlok (ejs) amiket esetleg renderelni fogunk, egyszerű scriptek írhatok bele

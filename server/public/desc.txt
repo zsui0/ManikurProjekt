@@ -1,0 +1,2 @@
+Statikus html fájlok, ezeket akkor használjuk ha simán rá keresünk a server-api-ra
+http://server-link:5000 -> statikus html-t fog renderelni többnyire az index.html lesz az

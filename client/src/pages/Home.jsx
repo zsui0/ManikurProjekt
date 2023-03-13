@@ -3,7 +3,7 @@ import httpClient from '../httpClient';
   
 const Home = () => {
   const [user, setUser] = useState(null);
-
+ 
   useEffect(() => {
     (async() => {
       try {
