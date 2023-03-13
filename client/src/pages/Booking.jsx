@@ -1,11 +1,8 @@
-//import React from 'react';
-
 import { Calendar, momentLocalizer, Views } from 'react-big-calendar'
 import moment from 'moment'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 import 'react-big-calendar/lib/addons/dragAndDrop/styles.css'
 import withDragAndDrop from 'react-big-calendar/lib/addons/dragAndDrop'
-
 import React, { Fragment, useCallback, useMemo, useState } from 'react'
 import PropTypes from 'prop-types'
 //import { Calendar, Views, DateLocalizer } from 'react-big-calendar'
@@ -33,14 +30,15 @@ const events = [
 ]
 
 const dnd = (props) => (
-  <div className="myCustomHeight" styles="height: 10">
+  <div className="myCustomHeight" styles="height: 600">
     <Calendar
       localizer={localizer}    
       startAccessor="start"
       endAccessor="end"
       events={events}
       draggableAccessor={(event) => true}
-      defaultView={Views.WEEK}    
+      defaultView={Views.WEEK}
+      views={['week','day']}   
     />    
 </div>
 )
