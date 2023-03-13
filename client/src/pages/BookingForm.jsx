@@ -23,7 +23,8 @@ const createBooking = async () => {
 }
 
 return(
-<div>
+<div>  {//A service majd dinamikusan fog lekérődni adatbázisból  
+        }
     <label>Válassza ki a szolgáltatást:
         <select id="service" onChange={(e) => setServiceName(e.target.value)}>
             <option value="">Válassza ki a szolgáltatást</option>
