@@ -26,9 +26,14 @@ const events = [
     title:'masodik',
     start: new Date('2023-03-13T13:45:00'),
     end: new Date('2023-03-13T16:00:00')
+  },
+  {
+    title:'Körömépítés',
+    start: new Date('2023-03-15T15:00:00'),
+    end: new Date('2023-03-15T18:00:00')
   }
 ]
-
+const today = new Date();
 const dnd = (props) => (
   <div className="myCustomHeight" styles="height: 600">
     <Calendar
@@ -38,7 +43,24 @@ const dnd = (props) => (
       events={events}
       draggableAccessor={(event) => true}
       defaultView={Views.WEEK}
-      views={['week','day']}   
+      step={15}
+      views={['week','day']}
+      min={
+        new Date(
+          today.getFullYear(), 
+          today.getMonth(), 
+          today.getDate(), 
+          8
+        )
+      }  
+      max={
+        new Date(
+          today.getFullYear(), 
+          today.getMonth(), 
+          today.getDate(), 
+          20
+        )
+      }
     />    
 </div>
 )
