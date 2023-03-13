@@ -14,8 +14,6 @@ import Signup from './pages/Signup';
 import Login from './pages/Login';
 import BookingForm from './pages/BookingForm';
 
-const API_URL = "http://localhost:5000";
-
 const App = () => {
 
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -41,7 +39,7 @@ return (
               <Route path="/" element={<Home currentUser={currentUser} />} />
               <Route path="profile" element={<Profile currentUser={currentUser} />}/>
               <Route path="about" element={<About />} />
-              <Route path="booking" element={<Booking />} />
+              <Route path="booking" element={<Booking currentUser={currentUser}/>} />
               <Route path="signup" element={<Signup />} />
               <Route path="login" element={<Login />} />
               <Route path="*" element={<NotFound />} />
