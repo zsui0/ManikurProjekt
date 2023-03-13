@@ -52,6 +52,6 @@ async function connect() { // MongoDB connection
   }
 }
 
-app.listen(process.env.PORT, () => { // Start backend
-  console.log(`Server started on port ${process.env.PORT}`)
+app.listen(process.env.MAIN_PORT, () => { // Start backend
+  console.log(`Server started on port ${process.env.MAIN_PORT}`)
 })

@@ -4,7 +4,6 @@
 client/node_modules
 server/node_modules
 server/route.rest
-server/.env
 /.pnp
 .pnp.js
 
