@@ -1,10 +1,12 @@
 import React from 'react';
-  
+import styles from '../styles/about.css'
+
+
 const About = () => {
   return (
     <>
     <div class="about">
-      <h1>About Us Page</h1>
+      <h1>Rólam</h1>
     </div>
     <div class="card">
       <img src="https://media.istockphoto.com/id/1016761216/photo/portrait-concept.jpg?s=612x612&w=0&k=20&c=JsGhLiCeBZs7NeUY_3wjDlLfVkgDJcD9UCXeWobe7Ak=" alt="" style={{width: '50%'}}/>
