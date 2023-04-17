@@ -37,10 +37,8 @@ const Home = (user) => {
       />
 
       <Carousel.Caption>
-        <div class ="carouselText">
-        <h3>Second slide label</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        </div>
+        <h3>Épített műköröm</h3>
+        <p>A gyenge rövid körmű vendégeknek megoldás a műköröm. Esztétikusabbá, ápolttá teszi a kezet, miközben nem kell hetekig bajlódni a körmökkel otthon. </p>
       </Carousel.Caption>
     </Carousel.Item>
     <Carousel.Item>
@@ -51,12 +49,8 @@ const Home = (user) => {
       />
 
       <Carousel.Caption>
-        <div class ="carouselText">
-        <h3>Third slide label</h3>
-        <p>
-          Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-        </p>
-        </div>
+        <h3>Gél lakk</h3>
+        <p>A műkörömhöz hasonlóan tartós, de nem vastagítja meg a körmöket. Tartóssága akár 3-4 hét, nem kopik, erős körömnél nem pattog le. </p>
       </Carousel.Caption>
     </Carousel.Item>
   </Carousel>
