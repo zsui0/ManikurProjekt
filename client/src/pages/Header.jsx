@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import logo from '../icons/logos.svg';
 import AuthService from '../services/auth.service';
-
 import {
   Container, Row, Col, Form, Input, Button, Navbar, Nav,
   NavbarBrand, NavLink, NavItem, UncontrolledDropdown,
@@ -35,7 +34,7 @@ const logOut = () => {
                     <NavLink className="font-weight-bold" href="/booking">Időpont foglalás</NavLink>
                   </NavItem>
                   
-                  <UncontrolledDropdown className="d-flex align-items-center" direction="down">
+                  <UncontrolledDropdown className="d-flex align-items-center" direction='down'>
                     <DropdownToggle className="font-weight-bold" nav caret>Ékszerek</DropdownToggle>
                     <DropdownMenu>
                       <DropdownItem href="/gyuru">Gyűrű</DropdownItem>
