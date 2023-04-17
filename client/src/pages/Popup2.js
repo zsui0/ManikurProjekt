@@ -1,14 +1,11 @@
 import React, { useState,useEffect } from "react";
 import '../styles/Popup.scss'
 
-function Popup(props) {
-
-    
-    const [priceOut, setPriceOut] = useState({});    
+function Popup2(props) {
+       
     const [fileNameOut, setFileNameOut] = useState({});
 
     useEffect(() => {
-        setPriceOut(props.price);
         setFileNameOut(props.fileName);
         //console.log("name:", nameOut , props.title);
     }, []);
@@ -28,10 +25,6 @@ function Popup(props) {
                     <label className="input-label">Képfájl neve:</label>
                     <input className="text-input" id="nOut" type="text" defaultValue={props.fileName} onChange={(e)=>setFileNameOut(e.target.value)}></input>
                 </div>
-                <div className="inputDiv vanish">
-                    <label className="input-label">Ár:</label>
-                    <input className="text-input" id="pOut"type="text" defaultValue={props.price} onChange={(e)=>setPriceOut(e.target.value)}></input>
-                </div>                
                 <div>
                     <button className="pButtonLeft" onClick={()=>props.setTrigger(false)}>Vissza</button>
                     <button className="pButtonRight" onClick={()=>output()}>Mentés</button>
@@ -41,6 +34,9 @@ function Popup(props) {
             </div>
         </div>
     ) : "";
+
+       
+
 }
 
-export default Popup
+export default Popup2
