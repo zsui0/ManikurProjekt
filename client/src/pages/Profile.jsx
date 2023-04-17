@@ -3,6 +3,7 @@ import AuthService from '../services/auth.service';
 import Button from 'react-bootstrap/Button';
 import ProfilPopup from "./ProfilPopup";
 import PassPopup from "./PassPopup";
+import '../styles/Profil.scss'
   
 const Profile = (user) => {
   
@@ -33,7 +34,7 @@ const Profile = (user) => {
 
   return (
     <>
-    <div class="profilDiv">
+    <section>
       {user.currentUser === undefined ? ( <></> 
             ) : (
               <>
@@ -45,7 +46,7 @@ const Profile = (user) => {
                 <button class="profilButton" onClick={()=> passPopupButton("")}>Jelszómódosítás</button>
               </>  
             )}
-    </div>
+    </section>
     {adatMod===true ? (
     <ProfilPopup trigger={buttonPopup} setTrigger={setButtonPopup}  lastName={user.currentUser.lastName} firstName={user.currentUser.firstName} email={user.currentUser.email} userName={user.currentUser.name}>  
     </ProfilPopup>)
