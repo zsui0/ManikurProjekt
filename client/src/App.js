@@ -16,6 +16,7 @@ import BookingForm from './pages/BookingForm';
 import Gyuru from './pages/Gyuru';
 import Nyaklanc from './pages/Nyaklanc';
 import Egyeb from './pages/Egyeb';
+import Gallery from './pages/Gallery';
 const App = () => {
 
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -44,9 +45,10 @@ return (
               <Route path="signup" element={<Signup />} />
               <Route path="login" element={<Login />} />
               <Route path="*" element={<NotFound />} />
-              <Route path="gyuru" element={<Gyuru />} /> 
-              <Route path="nyaklanc" element={<Nyaklanc />} />
-              <Route path="egyeb" element={<Egyeb />} />
+              <Route path="gyuru" element={<Gyuru currentUser={currentUser}/>} /> 
+              <Route path="nyaklanc" element={<Nyaklanc currentUser={currentUser}/>} />
+              <Route path="egyeb" element={<Egyeb currentUser={currentUser}/>} />
+              <Route path="gallery" element={<Gallery currentUser={currentUser}/>} />
             </Routes>
           </Container>
         </main>
