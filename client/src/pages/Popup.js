@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from "react";
-import '../styles/Popup.css'
+import '../styles/Popup.scss'
 
 function Popup(props) {
 
@@ -33,8 +33,8 @@ function Popup(props) {
                     <input className="text-input" id="pOut"type="text" defaultValue={props.price} onChange={(e)=>setPriceOut(e.target.value)}></input>
                 </div>                
                 <div>
-                    <button className="btn-custom-left" onClick={()=>props.setTrigger(false)}>Vissza</button>
-                    <button className="btn-custom-right" onClick={()=>output()}>Mentés</button>
+                    <button className="pButtonLeft" onClick={()=>props.setTrigger(false)}>Vissza</button>
+                    <button className="pButtonRight" onClick={()=>output()}>Mentés</button>
                 </div>
                 </form>
                 {props.children}
