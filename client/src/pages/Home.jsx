@@ -24,7 +24,7 @@ const Home = (user) => {
       />
       <Carousel.Caption>
         <h3>Hagyományos manikűr</h3>
-        <p>A kéz és a körmök rendszeres törődést, ápolást igényelnek. Manikűr során a bőr a radirozás és krémezés hatására megújul. A körmök japán manikűr következtében visszanyerik csillogásukat.</p>
+        <p class="carouselText">A kéz és a körmök rendszeres törődést, ápolást igényelnek. Manikűr során a bőr a radirozás és krémezés hatására megújul. A körmök japán manikűr következtében visszanyerik csillogásukat.</p>
       </Carousel.Caption>
     </Carousel.Item>
     <Carousel.Item>
