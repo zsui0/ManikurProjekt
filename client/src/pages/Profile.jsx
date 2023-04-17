@@ -37,14 +37,16 @@ const Profile = (user) => {
     <section>
       {user.currentUser === undefined ? ( <></> 
             ) : (
-              <>
-                <p>Vezetéknév: {user.currentUser.lastName}</p>                
-                <p>Keresztnév: {user.currentUser.firstName}</p>                
-                <p>E-mail cím: {user.currentUser.email}</p>                
-                <p>Felhasználónév: {user.currentUser.name}</p>
+              <div class="form-box">
+              <div class="form-value">
+                <h5>Vezetéknév: {user.currentUser.lastName}</h5>                
+                <h5>Keresztnév: {user.currentUser.firstName}</h5>                
+                <h5>E-mail cím: {user.currentUser.email}</h5>                
+                <h5>Felhasználónév: {user.currentUser.name}</h5>
                 <button className="profilButton" onClick={()=> popupButton(user.currentUser.lastName,user.currentUser.firstName,user.currentUser.email,user.currentUser.name)}>Adatok szerkesztése</button>
                 <button className="profilButton" onClick={()=> passPopupButton("")}>Jelszómódosítás</button>
-              </>  
+              </div>  
+              </div>
             )}
     </section>
     {adatMod===true ? (
