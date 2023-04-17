@@ -26,9 +26,10 @@ const App = () => {
     const user = AuthService.getCurrentUser();
 
     if (user) {
-      setCurrentUser(user);
+      if(currentUser === undefined)
+        setCurrentUser(user);
     }
-  }, []);
+  }, [currentUser]);
 
 return (
     <BrowserRouter>
