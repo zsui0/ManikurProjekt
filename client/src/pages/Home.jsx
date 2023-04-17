@@ -44,7 +44,7 @@ const Home = (user) => {
     </Carousel.Item>
   </Carousel>
   <div class="galleryButtonDiv">
-    <a class="galleryButton" href="/gallery"><img src={require('../icons/gallery.png')} alt="galéria"/></a>
+    <a href="/gallery"><img class="galleryButton" src={require('../icons/gallery.png')} alt="galéria" style={{width: 300}}/></a>
   </div>
   </>
   );
