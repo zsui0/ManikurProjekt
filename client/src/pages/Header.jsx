@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import logo from '../icons/logos.svg';
+import logo from '../icons/belaNails.jpeg';
 import AuthService from '../services/auth.service';
 import {
   Container, Row, Col, Form, Input, Button, Navbar, Nav,
