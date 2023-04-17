@@ -1,0 +1,30 @@
+body {
+    margin: 0;
+   // background-color: rgb(102, 188, 245);
+    //background-image: url('../icons/array.jpg');#183ba1
+    background-color: #b8b8b8;
+    background-position: center;
+    background-size: cover;
+}
+.box {
+    margin-top: 0em;
+    font-family: 'Nunito';
+    padding: 1em;
+    display: grid;
+    grid-gap: 0.2em;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
+    .card {
+        
+        padding: 1em;
+        border-radius: .3em;
+        //box-shadow: 10px 10px 10px rgba(0,0,0,0.1);
+        transition: 0.2s ease;
+
+        &:hover {
+            //box-shadow: 1 5px 5px 5px rgb(99, 100, 100);
+            transform: scale(1.02);
+            border-color: rgb(12, 142, 182);
+          }
+    }
+}
