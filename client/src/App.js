@@ -15,6 +15,7 @@ import Login from './pages/Login';
 import BookingForm from './pages/BookingForm';
 import Gyuru from './pages/Gyuru';
 import Nyaklanc from './pages/Nyaklanc';
+import Egyeb from './pages/Egyeb';
 
 
 const App = () => {
@@ -47,6 +48,7 @@ return (
               <Route path="*" element={<NotFound />} />
               <Route path="gyuru" element={<Gyuru />} /> 
               <Route path="nyaklanc" element={<Nyaklanc />} />
+              <Route path="egyeb" element={<Egyeb />} />
             </Routes>
           </Container>
         </main>

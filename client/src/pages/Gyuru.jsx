@@ -2,14 +2,14 @@ import React from "react";
 import {Card} from "react-bootstrap";
 import '../styles/cards.scss'
 const componentInfo=[
-    {image: "ring1.jpg"},
-    {image: "ring2.jpg"},
-    {image: "ring3.jpg"},
-    {image: "ring4.jpg"},
-    {image: "ring5.jpg"},
-    {image: "ring6.jpg"},
-    {image: "ring7.jpg"},
-    {image: "ring8.jpg"},
+    {image: "ring1.jpg", price: "69000"},
+    {image: "ring2.jpg", price: "65000"},
+    {image: "ring3.jpg", price: "19000"},
+    {image: "ring4.jpg", price: "19000"},
+    {image: "ring5.jpg", price: "57000"},
+    {image: "ring6.jpg", price: "75000"},
+    {image: "ring7.jpg", price: "90000"},
+    {image: "ring8.jpg", price: "49000"},
 ];
 
 const Gyuru=()=>{
@@ -17,13 +17,16 @@ const Gyuru=()=>{
         return(
             <Card style={{ width: '18rem'}} key={index} className="card">
                 <Card.Img variant="top" src={require("../icons/ekszerek/"+card.image)} />
+                <Card.Body>
+                    <Card.Text>Ár: {card.price} Ft</Card.Text>
+                </Card.Body>
             </Card>
         );
     };
 
     return(<>
         <div className="box">
-            {componentInfo.map(renderCard)}            
+            {componentInfo.map(renderCard)}
         </div>
     </>)
 
