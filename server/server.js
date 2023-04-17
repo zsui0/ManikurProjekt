@@ -1,7 +1,10 @@
-require('dotenv').config()
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
 
 const express = require('express')
 const mongoose = require('mongoose')
+const cors = require('cors')
 const app = express()
 
 /*
@@ -10,14 +13,12 @@ const app = express()
     mongodb+srv://<username>:<password>@manikur.h20qhig.mongodb.net/?retryWrites=true&w=majority
 */
 
-
-
 const db = connect();
 
 app.use(express.static("public")) // automatically use public folder files for static page rendering, you can access/open files in http line : 'apiHttp'/test/test.html
 app.use(express.urlencoded({ extended: true })) // allow access information coming from Forms
 app.use(express.json()) // same as urlencoded just with json
-
+app.use(cors())
 
 app.set('view engine', 'ejs') // for rendering html (ejs or pug), download extension ejs language support
 // app.use(logger) : if on top everything will use it, you can change it's location
@@ -33,8 +34,10 @@ app.set('view engine', 'ejs') // for rendering html (ejs or pug), download exten
 */
 
 const userRouter = require('./routes/users')
+const bookingRouter = require('./routes/bookings')
 
 app.use('/users',userRouter)
+app.use('/booking',bookingRouter)
 
 function logger(req, res, next){ // middleware logger
   console.log(req.originalUrl)
@@ -52,6 +55,6 @@ async function connect() { // MongoDB connection
   }
 }
 
-app.listen(process.env.PORT, () => { // Start backend
-  console.log(`Server started on port ${process.env.PORT}`)
+app.listen(process.env.MAIN_PORT, () => { // Start backend
+  console.log(`Server started on port ${process.env.MAIN_PORT}`)
 })

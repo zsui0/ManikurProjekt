@@ -1,6 +1,8 @@
 const express = require('express')
 const router = express.Router() 
+const jwt = require('jsonwebtoken')
 const User = require('../models/user')
+const bcrypt = require('bcrypt')
 
 router.use(logger)
 
@@ -10,28 +12,12 @@ router.get('/', async (req, res) => {
     const users = await User.find()
     res.json(users)
   } catch (error) {
-    res.status(500).json({message: err.message}) // 500: error on server
+    res.status(500).json({message: error.message}) // 500: error on server
   }
 })
 //Getting one
 router.get('/:id', getUser, (req, res) => {
   res.json(res.user)
-})
-//Creating one
-router.post('/', async (req, res) => { 
-  const user = new User({
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    userName: req.body.userName,
-    email: req.body.email,
-    password: req.body.password
-  })
-  try {
-    const newUser = await user.save()
-    res.status(201).json(newUser) // 201: successfuly created an object
-  } catch (error) {
-    res.status(400).json({message: err.message}) // 400: wrong with the user input
-  }
 })
 //Updating one
 router.patch('/:id', getUser, async (req, res) => {  // patch update just the new data, put update everything
@@ -56,7 +42,34 @@ router.delete('/:id', getUser, async (req, res) => {
   }
 })
 
-async function getUser(req, res, next) {
+router.post('/register', async (req, res) => {  
+  try {
+    const checkUserByEmail = await User.findOne({email: req.body.email})
+    const checkUserByName = await User.findOne({userName: req.body.userName})
+    if(checkUserByEmail != null) {
+      res.status(400).json({message: `User already exists with '${req.body.email}' email`})
+    } else if(checkUserByName != null) {
+      res.status(400).json({message: `User already exists with '${req.body.userName}' name`})
+    }
+
+    const hashedPassword = await bcrypt.hash(req.body.password, 10) // 10 -> salt
+    const user = new User({
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      userName: req.body.userName,
+      email: req.body.email,
+      password: hashedPassword
+    })
+
+    const newUser = await user.save()
+    res.status(201).json(newUser) // 201: successfuly created an object
+
+  } catch (error) {
+    res.status(400).json({message: error.message}) // 400: wrong with the user input
+  }
+})
+
+async function getUser(req, res, next) { // middleware
   let user
   try {
     user = await User.findById(req.params.id)
@@ -69,6 +82,18 @@ async function getUser(req, res, next) {
 
   res.user = user
   next() 
+}
+
+function authenticateToken(req, res, next) {
+  const authHeader = req.headers['authorization']
+  const token = authHeader && authHeader.split(' ')[1]
+  if (token == null) return res.sendStatus(401)
+
+  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+    if(err) return res.sendStatus(403)
+    req.user = user
+    next()
+  })
 }
 
 function logger(req, res, next){ // middleware logger
