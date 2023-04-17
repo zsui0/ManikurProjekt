@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import AuthService from '../services/auth.service';
   
 const Profile = (props) => {
@@ -9,24 +9,18 @@ const Profile = (props) => {
   const[email,setEmail] = useState("");
   const[password,setPassword] = useState("");
   const[role,setRole] = useState("");
-  useEffect(() => {
-    const user = AuthService.getCurrentUser();
 
-    if (user) {
-      console.log(user);
 
-      setUserName(JSON.stringify(user.name));
+    if (props.currentUser !== undefined) {
+      setUserName((props.currentUser.name));
       console.log(userName);
-      setLastName(JSON.stringify(user.lastName));
+      setLastName((props.currentUser.lastName));
       console.log(lastName);
-      setFirstName(JSON.stringify(user.firstName));
+      setFirstName((props.currentUser.firstName));
       console.log(firstName);
-      setEmail(JSON.stringify(user.email));
+      setEmail((props.currentUser.email));
       console.log(email);
     }
-    
-
-  }, []);
 
 
   return (
