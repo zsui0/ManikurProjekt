@@ -60,14 +60,14 @@ const logOut = () => {
               <Col className="d-none d-lg-flex justify-content-end">
                 {user.currentUser === undefined ? (
                   <Nav>
-                    <NavLink className="font-weight-bold" href="/signup">Regisztráció</NavLink>
-                    <NavLink className="font-weight-bold" href="/login">Bejelentkezés</NavLink>
+                    <NavLink className="font-weight-bold" href="/signup" style={{color: '#FE1AAC'}} >Regisztráció</NavLink>
+                    <NavLink className="font-weight-bold" href="/login" style={{color: '#FE1AAC'}}>Bejelentkezés</NavLink>
                   </Nav>
                 ) : (
                   <Nav>
-                    <NavLink className="font-weight-bold d-flex align-items-center" href="/login" onClick={logOut}>Kijelentkezés</NavLink>
-                    <UncontrolledDropdown className="d-flex align-items-center" direction='down'>
-                    <DropdownToggle className="font-weight-bold" nav caret><img src={require('../icons/user.png')} alt="avatar" className="img-fluid rounded-circle" style={{ width: 40 }} /></DropdownToggle>
+                    <NavLink className="font-weight-bold d-flex align-items-center" href="/login" style={{color: '#FE1AAC'}} onClick={logOut}>Kijelentkezés</NavLink>
+                    <UncontrolledDropdown className="d-flex align-items-center "  direction='down'>
+                    <DropdownToggle className="font-weight-bold" style={{color: '#FE1AAC'}} nav caret><img src={require('../icons/user.png')} alt="avatar" className="img-fluid rounded-circle" style={{ width: 40 }} /></DropdownToggle>
                     <DropdownMenu>
                       <DropdownItem href="/profile">Adataim megtekintése</DropdownItem>
                       <DropdownItem href="/foglalasok">Foglalásaim megtekintése</DropdownItem>
