@@ -9,7 +9,6 @@ const Home = (user) => {
       <img
         className="d-block w-100"
         src={require('../icons/carousel/elso.jpg')}
-        alt="First slide"
       />
       <Carousel.Caption>
         <div class ="carouselText">
@@ -22,7 +21,6 @@ const Home = (user) => {
       <img
         className="d-block w-100"
         src={require('../icons/carousel/masodik.jpg')}
-        alt="Second slide"
       />
 
       <Carousel.Caption>
@@ -34,7 +32,6 @@ const Home = (user) => {
       <img
         className="d-block w-100"
         src={require('../icons/carousel/harmadik.jpg')}
-        alt="Third slide"
       />
 
       <Carousel.Caption>

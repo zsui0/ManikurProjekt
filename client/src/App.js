@@ -16,8 +16,6 @@ import BookingForm from './pages/BookingForm';
 import Gyuru from './pages/Gyuru';
 import Nyaklanc from './pages/Nyaklanc';
 import Egyeb from './pages/Egyeb';
-
-
 const App = () => {
 
   const [currentUser, setCurrentUser] = useState(undefined);
