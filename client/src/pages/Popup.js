@@ -28,7 +28,7 @@ function Popup(props) {
                     <label className="input-label">Képfájl neve:</label>
                     <input className="text-input" id="nOut" type="text" defaultValue={props.fileName} onChange={(e)=>setFileNameOut(e.target.value)}></input>
                 </div>
-                <div className="inputDiv">
+                <div className="inputDiv vanish">
                     <label className="input-label">Ár:</label>
                     <input className="text-input" id="pOut"type="text" defaultValue={props.price} onChange={(e)=>setPriceOut(e.target.value)}></input>
                 </div>                

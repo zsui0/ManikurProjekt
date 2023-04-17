@@ -1,6 +1,9 @@
 import React from "react";
 import {Card} from "react-bootstrap";
 import '../styles/cards.scss'
+import Button from 'react-bootstrap/Button';
+import Popup from "./Popup";
+import { useState } from "react";
 
 
 const componentInfo=[
@@ -15,7 +18,16 @@ const componentInfo=[
     {image: "nail9.jpg"},
 ];
 
-const Gallery=()=>{
+const Gallery=(user)=>{
+
+    const[buttonPopup, setButtonPopup] = useState(false);
+    const[cardFileName, setCardFileName] = useState("");
+
+    function popupButton(price,fileName){
+        setButtonPopup(true);
+        setCardFileName(fileName)
+    }
+
     const renderCard=(card, index) =>{
         return(
             <Card style={{ width: '18rem'}} key={index} className="card">
@@ -26,8 +38,18 @@ const Gallery=()=>{
 
     return(<>
         <div className="box">
-            {componentInfo.map(renderCard)}            
+            {componentInfo.map(renderCard)}
+            {user.role === "admin" ? (  //itt keresd az admint ha nem megy
+            <Card style={{ width: '18rem' }}className="card">
+                <Card.Body>   
+                    <Button variant = "custom" onClick={()=> popupButton("","")}>Új ékszer felvitele</Button>    
+                </Card.Body>
+            </Card>)
+            :
+            (<></>)}           
         </div>
+        <Popup trigger={buttonPopup} setTrigger={setButtonPopup}  fileName={cardFileName}>  
+        </Popup>
     </>)
 
 }

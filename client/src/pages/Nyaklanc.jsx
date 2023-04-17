@@ -13,7 +13,7 @@ const componentInfo=[
     {image: "neck6.jpg", price: "73000"},
 ];
 
-const Nyaklanc=()=>{
+const Nyaklanc=(user)=>{
 
     const[buttonPopup, setButtonPopup] = useState(false);
     const[cardPrice, setCardPrice] = useState("");
@@ -38,12 +38,15 @@ const Nyaklanc=()=>{
 
     return(<>
         <div className="box">
-            {componentInfo.map(renderCard)}   
-        <Card style={{ width: '18rem' }}className="card">
+            {componentInfo.map(renderCard)}
+            {user.role == "admin" ? (  //itt keresd az admint ha nem megy
+            <Card style={{ width: '18rem' }}className="card">
                 <Card.Body>   
                     <Button variant = "custom" onClick={()=> popupButton("","")}>Új ékszer felvitele</Button>    
                 </Card.Body>
-            </Card>
+            </Card>)
+            :
+            (<></>)}
         </div>
         <Popup trigger={buttonPopup} setTrigger={setButtonPopup}  price={cardPrice} fileName={cardFileName}>  
         </Popup>

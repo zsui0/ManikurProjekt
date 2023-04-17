@@ -16,7 +16,7 @@ const componentInfo=[
     {image: "ring8.jpg", price: "49000"},
 ];
 
-const Gyuru=()=>{
+const Gyuru=(user)=>{
 
     const[buttonPopup, setButtonPopup] = useState(false);
     const[cardPrice, setCardPrice] = useState("");
@@ -41,12 +41,15 @@ const Gyuru=()=>{
 
     return(<>
         <div className="box">
-            {componentInfo.map(renderCard)}        
-        <Card style={{ width: '18rem' }}className="card">
+            {componentInfo.map(renderCard)}
+            {user.role == "admin" ? (  //itt keresd az admint ha nem megy
+            <Card style={{ width: '18rem' }}className="card">
                 <Card.Body>   
                     <Button variant = "custom" onClick={()=> popupButton("","")}>Új ékszer felvitele</Button>    
                 </Card.Body>
-            </Card>
+            </Card>)
+            :
+            (<></>)}
         </div>
         <Popup trigger={buttonPopup} setTrigger={setButtonPopup}  price={cardPrice} fileName={cardFileName}>  
         </Popup>

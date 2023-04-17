@@ -15,7 +15,7 @@ const componentInfo=[
     {image: "else5.jpg", price: "47000"},
 ];
 
-const Egyeb=()=>{
+const Egyeb=(user)=>{
 
     const[buttonPopup, setButtonPopup] = useState(false);
     const[cardPrice, setCardPrice] = useState("");
@@ -40,15 +40,19 @@ const Egyeb=()=>{
 
     return(<>
         <div className="box">
-            {componentInfo.map(renderCard)}  
+            {componentInfo.map(renderCard)}
+            {user.role == "admin" ? (  //itt keresd az admint ha nem megy
             <Card style={{ width: '18rem' }}className="card">
                 <Card.Body>   
                     <Button variant = "custom" onClick={()=> popupButton("","")}>Új ékszer felvitele</Button>    
                 </Card.Body>
-            </Card>
+            </Card>)
+            :
+            (<></>)}
         </div>
         <Popup trigger={buttonPopup} setTrigger={setButtonPopup}  price={cardPrice} fileName={cardFileName}>  
         </Popup>
+        
     </>)
 
 }

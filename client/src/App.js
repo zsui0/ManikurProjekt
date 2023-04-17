@@ -47,10 +47,10 @@ return (
               <Route path="signup" element={<Signup />} />
               <Route path="login" element={<Login />} />
               <Route path="*" element={<NotFound />} />
-              <Route path="gyuru" element={<Gyuru />} /> 
-              <Route path="nyaklanc" element={<Nyaklanc />} />
-              <Route path="egyeb" element={<Egyeb />} />
-              <Route path="gallery" element={<Gallery />} />
+              <Route path="gyuru" element={<Gyuru currentUser={currentUser}/>} /> 
+              <Route path="nyaklanc" element={<Nyaklanc currentUser={currentUser}/>} />
+              <Route path="egyeb" element={<Egyeb currentUser={currentUser}/>} />
+              <Route path="gallery" element={<Gallery currentUser={currentUser}/>} />
             </Routes>
           </Container>
         </main>
