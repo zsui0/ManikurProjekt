@@ -16,6 +16,7 @@ import BookingForm from './pages/BookingForm';
 import Gyuru from './pages/Gyuru';
 import Nyaklanc from './pages/Nyaklanc';
 import Egyeb from './pages/Egyeb';
+import Gallery from './pages/Gallery';
 
 
 const App = () => {
@@ -49,6 +50,7 @@ return (
               <Route path="gyuru" element={<Gyuru />} /> 
               <Route path="nyaklanc" element={<Nyaklanc />} />
               <Route path="egyeb" element={<Egyeb />} />
+              <Route path="gallery" element={<Gallery />} />
             </Routes>
           </Container>
         </main>
