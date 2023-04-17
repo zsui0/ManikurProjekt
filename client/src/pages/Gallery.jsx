@@ -1,6 +1,8 @@
 import React from "react";
 import {Card} from "react-bootstrap";
 import '../styles/cards.scss'
+
+
 const componentInfo=[
     {image: "nail1.jpg"},
     {image: "nail2.jpg"},
