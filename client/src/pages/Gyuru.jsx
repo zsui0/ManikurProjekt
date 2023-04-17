@@ -2,21 +2,21 @@ import React from "react";
 import {Card} from "react-bootstrap";
 
 const componentInfo=[
-    {image: "{require('../icons/ekszerek/ring1.jpg')}"},
-    {image: "{require('../icons/ekszerek/ring2.jpg')}"},
-    {image: "{require('../icons/ekszerek/ring3.jpg')}"},
-    {image: "{require('../icons/ekszerek/ring4.jpg')}"},
-    {image: "{require('../icons/ekszerek/ring5.jpg')}"},
-    {image: "{require('../icons/ekszerek/ring6.jpg')}"},
-    {image: "{require('../icons/ekszerek/ring7.jpg')}"},
-    {image: "{require('../icons/ekszerek/ring8.jpg')}"},
+    {image: "ring1.jpg"},
+    {image: "ring2.jpg"},
+    {image: "ring3.jpg"},
+    {image: "ring4.jpg"},
+    {image: "ring5.jpg"},
+    {image: "ring6.jpg"},
+    {image: "ring7.jpg"},
+    {image: "ring8.jpg"},
 ];
 
 const Gyuru=()=>{
     const renderCard=(card, index) =>{
         return(
             <Card style={{ width: '18rem'}} key={index} className="card">
-                <Card.Img variant="top" src={require('../icons/ekszerek/ring1.jpg')}/>
+                <Card.Img variant="top" src={require("../icons/ekszerek/"+card.image)} />
             </Card>
         );
     };
