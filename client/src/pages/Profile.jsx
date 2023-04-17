@@ -42,8 +42,8 @@ const Profile = (user) => {
                 <p>Keresztnév: {user.currentUser.firstName}</p>                
                 <p>E-mail cím: {user.currentUser.email}</p>                
                 <p>Felhasználónév: {user.currentUser.name}</p>
-                <button class="profilButton" onClick={()=> popupButton(user.currentUser.lastName,user.currentUser.firstName,user.currentUser.email,user.currentUser.name)}>Adatok szerkesztése</button>
-                <button class="profilButton" onClick={()=> passPopupButton("")}>Jelszómódosítás</button>
+                <button className="profilButton" onClick={()=> popupButton(user.currentUser.lastName,user.currentUser.firstName,user.currentUser.email,user.currentUser.name)}>Adatok szerkesztése</button>
+                <button className="profilButton" onClick={()=> passPopupButton("")}>Jelszómódosítás</button>
               </>  
             )}
     </section>
@@ -51,7 +51,7 @@ const Profile = (user) => {
     <ProfilPopup trigger={buttonPopup} setTrigger={setButtonPopup}  lastName={user.currentUser.lastName} firstName={user.currentUser.firstName} email={user.currentUser.email} userName={user.currentUser.name}>  
     </ProfilPopup>)
     :
-    (<PassPopup trigger={buttonPopup} setTrigger={setButtonPopup}  pass={""}>      
+    (<PassPopup trigger={buttonPopup} setTrigger={setButtonPopup}  pass={""} email={email}>      
     </PassPopup>)
     }
     </>

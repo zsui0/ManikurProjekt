@@ -49,7 +49,7 @@ const Gyuru=(user)=>{
                     {user.currentUser.role === "admin" ? ( 
                         <Card style={{ width: '18rem' }}className="card">
                             <Card.Body>   
-                                <Button variant = "custom" onClick={()=> popupButton("","")}>Új ékszer felvitele</Button>    
+                                <Button style={{width: '14rem', border: "solid black 1px" }} variant = "custom" onClick={()=> popupButton("","")}>Új ékszer felvitele</Button>    
                             </Card.Body>
                         </Card> 
                     ) : (
