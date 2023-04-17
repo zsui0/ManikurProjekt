@@ -47,7 +47,7 @@ const Gallery=(user)=>{
                     {user.currentUser.role === "admin" ? ( 
                         <Card style={{ width: '18rem' }}className="card">
                             <Card.Body>   
-                                <Button variant = "custom" onClick={()=> popupButton("")}>Új ékszer felvitele</Button>    
+                                <Button variant = "custom" onClick={()=> popupButton("")}>Új kép felvitele</Button>    
                             </Card.Body>
                         </Card> 
                     ) : (
