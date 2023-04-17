@@ -13,6 +13,9 @@ import Header from './pages/Header';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import BookingForm from './pages/BookingForm';
+import Gyuru from './pages/Gyuru';
+import Nyaklanc from './pages/Nyaklanc';
+
 
 const App = () => {
 
@@ -42,6 +45,8 @@ return (
               <Route path="signup" element={<Signup />} />
               <Route path="login" element={<Login />} />
               <Route path="*" element={<NotFound />} />
+              <Route path="gyuru" element={<Gyuru />} /> 
+              <Route path="nyaklanc" element={<Nyaklanc />} />
             </Routes>
           </Container>
         </main>
