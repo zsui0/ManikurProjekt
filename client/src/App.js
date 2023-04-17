@@ -26,8 +26,9 @@ const App = () => {
     const user = AuthService.getCurrentUser();
 
     if (user) {
-      if(currentUser === undefined)
+      if(currentUser === undefined){
         setCurrentUser(user);
+      }
     }
   }, [currentUser]);
 
