@@ -33,7 +33,7 @@ return (
         <Header currentUser={currentUser}/>
         
         <main className="my-5 py-5">
-          <Container className="px-0">
+          <Container fluid className="px-0">
             <Routes>   
               <Route path="/" element={<Home currentUser={currentUser} />} />
               <Route path="profile" element={<Profile currentUser={currentUser} />}/>
