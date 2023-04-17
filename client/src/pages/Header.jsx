@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import logo from '../icons/logos.svg';
 import AuthService from '../services/auth.service';
-
 import {
   Container, Row, Col, Form, Input, Button, Navbar, Nav,
   NavbarBrand, NavLink, NavItem, UncontrolledDropdown,
@@ -35,7 +34,7 @@ const logOut = () => {
                     <NavLink className="font-weight-bold" href="/booking">Időpont foglalás</NavLink>
                   </NavItem>
                   
-                  <UncontrolledDropdown className="d-flex align-items-center" direction="down">
+                  <UncontrolledDropdown className="d-flex align-items-center" direction='down'>
                     <DropdownToggle className="font-weight-bold" nav caret>Ékszerek</DropdownToggle>
                     <DropdownMenu>
                       <DropdownItem href="/gyuru">Gyűrű</DropdownItem>
@@ -67,11 +66,14 @@ const logOut = () => {
                 ) : (
                   <Nav>
                     <NavLink className="font-weight-bold d-flex align-items-center" href="/login" onClick={logOut}>Kijelentkezés</NavLink>
-                    <NavItem className="d-flex align-items-center">
-                      <NavLink className="font-weight-bold" href="/profile">
-                      <img src={require('../icons/user.png')} alt="avatar" className="img-fluid rounded-circle" style={{ width: 40 }} />
-                      </NavLink>
-                  </NavItem>
+                    <UncontrolledDropdown className="d-flex align-items-center" direction='down'>
+                    <DropdownToggle className="font-weight-bold" nav caret><img src={require('../icons/user.png')} alt="avatar" className="img-fluid rounded-circle" style={{ width: 40 }} /></DropdownToggle>
+                    <DropdownMenu>
+                      <DropdownItem href="/profile">Adataim megtekintése</DropdownItem>
+                      <DropdownItem href="/foglalasok">Foglalásaim megtekintése</DropdownItem>
+                    </DropdownMenu>
+                    </UncontrolledDropdown>
+                  
                 </Nav>
                 )}
 

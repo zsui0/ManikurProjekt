@@ -5,18 +5,17 @@ import Button from 'react-bootstrap/Button';
 import Popup from "./Popup";
 import { useState } from "react";
 
+
+
 const componentInfo=[
-    {image: "ring1.jpg", price: "69000"},
-    {image: "ring2.jpg", price: "65000"},
-    {image: "ring3.jpg", price: "19000"},
-    {image: "ring4.jpg", price: "19000"},
-    {image: "ring5.jpg", price: "57000"},
-    {image: "ring6.jpg", price: "75000"},
-    {image: "ring7.jpg", price: "90000"},
-    {image: "ring8.jpg", price: "49000"},
+    {image: "else1.jpg", price: "22000"},
+    {image: "else2.jpg", price: "46000"},
+    {image: "else3.jpg", price: "40000"},
+    {image: "else4.jpg", price: "62000"},
+    {image: "else5.jpg", price: "47000"},
 ];
 
-const Gyuru=()=>{
+const Egyeb=()=>{
 
     const[buttonPopup, setButtonPopup] = useState(false);
     const[cardPrice, setCardPrice] = useState("");
@@ -41,8 +40,8 @@ const Gyuru=()=>{
 
     return(<>
         <div className="box">
-            {componentInfo.map(renderCard)}        
-        <Card style={{ width: '18rem' }}className="card">
+            {componentInfo.map(renderCard)}  
+            <Card style={{ width: '18rem' }}className="card">
                 <Card.Body>   
                     <Button variant = "custom" onClick={()=> popupButton("","")}>Új ékszer felvitele</Button>    
                 </Card.Body>
@@ -54,4 +53,4 @@ const Gyuru=()=>{
 
 }
 
-export default Gyuru;
+export default Egyeb;
