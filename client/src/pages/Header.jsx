@@ -51,7 +51,7 @@ const logOut = () => {
               </Col>
               
               <Col className="d-flex justify-content-xs-start justify-content-lg-center">
-                <NavbarBrand className="d-inline-block p-0" href="/" style={{ width: 80 }}>
+                <NavbarBrand className="d-inline-block p-0" href="/" style={{ width: 150 }}>
                   <img src={logo} alt="logo" className="position-relative img-fluid" />
                 </NavbarBrand>
               </Col>
