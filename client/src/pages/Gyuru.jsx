@@ -42,7 +42,7 @@ const Gyuru=(user)=>{
     return(<>
         <div className="box">
             {componentInfo.map(renderCard)}
-            {user.role == "admin" ? (  //itt keresd az admint ha nem megy
+            {user.role === "admin" ? (  //itt keresd az admint ha nem megy
             <Card style={{ width: '18rem' }}className="card">
                 <Card.Body>   
                     <Button variant = "custom" onClick={()=> popupButton("","")}>Új ékszer felvitele</Button>    

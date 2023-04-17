@@ -8,13 +8,21 @@ const Profile = (props) => {
   const[firstName,setFirstName] = useState("");
   const[email,setEmail] = useState("");
   const[password,setPassword] = useState("");
+  const[role,setRole] = useState("");
   useEffect(() => {
     const user = AuthService.getCurrentUser();
 
     if (user) {
       console.log(user);
-      setUserName(user.name);
+
+      setUserName(JSON.stringify(user.name));
       console.log(userName);
+      setLastName(JSON.stringify(user.lastName));
+      console.log(lastName);
+      setFirstName(JSON.stringify(user.firstName));
+      console.log(firstName);
+      setEmail(JSON.stringify(user.email));
+      console.log(email);
     }
     
 
