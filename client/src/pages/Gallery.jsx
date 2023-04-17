@@ -2,7 +2,7 @@ import React from "react";
 import {Card} from "react-bootstrap";
 import '../styles/cards.scss'
 import Button from 'react-bootstrap/Button';
-import Popup from "./Popup";
+import PopupII from "./PopupII";
 import { useState } from "react";
 
 
@@ -23,7 +23,7 @@ const Gallery=(user)=>{
     const[buttonPopup, setButtonPopup] = useState(false);
     const[cardFileName, setCardFileName] = useState("");
 
-    function popupButton(price,fileName){
+    function popupButton(fileName){
         setButtonPopup(true);
         setCardFileName(fileName)
     }
@@ -47,7 +47,7 @@ const Gallery=(user)=>{
                     {user.currentUser.role === "admin" ? ( 
                         <Card style={{ width: '18rem' }}className="card">
                             <Card.Body>   
-                                <Button variant = "custom" onClick={()=> popupButton("","")}>Új ékszer felvitele</Button>    
+                                <Button variant = "custom" onClick={()=> popupButton("")}>Új ékszer felvitele</Button>    
                             </Card.Body>
                         </Card> 
                     ) : (
@@ -56,8 +56,8 @@ const Gallery=(user)=>{
                 </>
             )}           
         </div>
-        <Popup trigger={buttonPopup} setTrigger={setButtonPopup}  fileName={cardFileName}>  
-        </Popup>
+        <PopupII trigger={buttonPopup} setTrigger={setButtonPopup}  fileName={cardFileName}>  
+        </PopupII>
     </>)
 
 }
