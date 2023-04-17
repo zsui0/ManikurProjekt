@@ -19,7 +19,7 @@ const Home = (user) => {
     <Carousel.Item>
       <img
         className="d-block w-100"
-        src="holder.js/800x400?text=First slide&bg=373940"
+        src={require('../icons/carousel/elso.jpg')}
         alt="First slide"
       />
       <Carousel.Caption>
@@ -30,7 +30,7 @@ const Home = (user) => {
     <Carousel.Item>
       <img
         className="d-block w-100"
-        src="holder.js/800x400?text=Second slide&bg=282c34"
+        src={require('../icons/carousel/masodik.jpg')}
         alt="Second slide"
       />
 
@@ -42,7 +42,7 @@ const Home = (user) => {
     <Carousel.Item>
       <img
         className="d-block w-100"
-        src="holder.js/800x400?text=Third slide&bg=20232a"
+        src={require('../icons/carousel/harmadik.jpg')}
         alt="Third slide"
       />
 
