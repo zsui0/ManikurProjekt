@@ -8,24 +8,13 @@ const Profile = (props) => {
   const[firstName,setFirstName] = useState("");
   const[email,setEmail] = useState("");
   const[password,setPassword] = useState("");
-  const[role,setRole] = useState("");
 
 
-    if (props.currentUser !== undefined) {
-      setUserName((props.currentUser.name));
-      console.log(userName);
-      setLastName((props.currentUser.lastName));
-      console.log(lastName);
-      setFirstName((props.currentUser.firstName));
-      console.log(firstName);
-      setEmail((props.currentUser.email));
-      console.log(email);
-    }
 
 
   return (
     <div>
-    {props.currentUser === undefined ? (<p>Jelentkezzen be!</p>) : (<p>Bejelentkezve</p>)}
+    {props.currentUser === undefined ? (<p>Jelentkezzen be!</p>) : (<div>{props.currentUser.email}</div>)}
     </div>
   );
 };
