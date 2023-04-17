@@ -66,11 +66,14 @@ const logOut = () => {
                 ) : (
                   <Nav>
                     <NavLink className="font-weight-bold d-flex align-items-center" href="/login" onClick={logOut}>Kijelentkezés</NavLink>
-                    <NavItem className="d-flex align-items-center">
-                      <NavLink className="font-weight-bold" href="/profile">
-                      <img src={require('../icons/user.png')} alt="avatar" className="img-fluid rounded-circle" style={{ width: 40 }} />
-                      </NavLink>
-                  </NavItem>
+                    <UncontrolledDropdown className="d-flex align-items-center" direction='down'>
+                    <DropdownToggle className="font-weight-bold" nav caret><img src={require('../icons/user.png')} alt="avatar" className="img-fluid rounded-circle" style={{ width: 40 }} /></DropdownToggle>
+                    <DropdownMenu>
+                      <DropdownItem href="/profile">Adataim megtekintése</DropdownItem>
+                      <DropdownItem href="/foglalasok">Foglalásaim megtekintése</DropdownItem>
+                    </DropdownMenu>
+                    </UncontrolledDropdown>
+                  
                 </Nav>
                 )}
 
