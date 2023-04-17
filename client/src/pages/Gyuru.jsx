@@ -3,8 +3,11 @@ import {Card} from "react-bootstrap";
 import '../styles/cards.scss'
 import Button from 'react-bootstrap/Button';
 import Popup from "./Popup";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
+import GalleryJewelryService from "../services/gallery-jewelry-service";
+
+/*
 const componentInfo=[
     {image: "ring1.jpg", price: "69000"},
     {image: "ring2.jpg", price: "65000"},
@@ -15,18 +18,34 @@ const componentInfo=[
     {image: "ring7.jpg", price: "90000"},
     {image: "ring8.jpg", price: "49000"},
 ];
+*/
 
 const Gyuru=(user)=>{
 
     const[buttonPopup, setButtonPopup] = useState(false);
     const[cardPrice, setCardPrice] = useState("");
     const[cardFileName, setCardFileName] = useState("");
+    const [componentInfo, setComponentInfo] = useState([]);
 
     function popupButton(price,fileName){
         setButtonPopup(true);
         setCardPrice(price);
         setCardFileName(fileName)
     }
+
+    const GetAll = async () => {
+        try{
+            const components = await GalleryJewelryService.ListAllJewelry("gyuru")
+            setComponentInfo(components)
+            console.log(componentInfo)
+        } catch(error) {
+            console.log(error)
+        }
+    }
+
+    useEffect(() => {
+        GetAll()
+    }, [])
 
     const renderCard=(card, index) =>{
         return(
@@ -49,7 +68,7 @@ const Gyuru=(user)=>{
                     {user.currentUser.role === "admin" ? ( 
                         <Card style={{ width: '18rem' }}className="card">
                             <Card.Body>   
-                                <Button style={{width: '14rem', border: "solid black 1px" }} variant = "custom" onClick={()=> popupButton("","")}>Új ékszer felvitele</Button>    
+                                <Button style={{width: '14rem', border: "solid black 1px" }} variant = "custom" onClick={()=> popupButton("","")}>Új gyűrű felvitele</Button>    
                             </Card.Body>
                         </Card> 
                     ) : (
@@ -58,7 +77,7 @@ const Gyuru=(user)=>{
                 </>
             )}
         </div>
-        <Popup trigger={buttonPopup} setTrigger={setButtonPopup}  price={cardPrice} fileName={cardFileName}>  
+        <Popup trigger={buttonPopup} setTrigger={setButtonPopup}  price={cardPrice} fileName={cardFileName} type={"gyuru"}>  
         </Popup>
     </>)
 

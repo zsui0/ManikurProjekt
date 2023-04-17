@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {Card} from "react-bootstrap";
 import '../styles/cards.scss'
 import Button from 'react-bootstrap/Button';
 import PopupII from "./PopupII";
 import { useState } from "react";
 
+import GalleryJewelryService from "../services/gallery-jewelry-service";
 
+/*
 const componentInfo=[
     {image: "nail1.jpg"},
     {image: "nail2.jpg"},
@@ -17,16 +19,31 @@ const componentInfo=[
     {image: "nail8.jpg"},
     {image: "nail9.jpg"},
 ];
-
+*/
 const Gallery=(user)=>{
 
     const[buttonPopup, setButtonPopup] = useState(false);
     const[cardFileName, setCardFileName] = useState("");
+    const [componentInfo, setComponentInfo] = useState([]);
 
     function popupButton(fileName){
         setButtonPopup(true);
         setCardFileName(fileName)
     }
+
+    const GetAll = async () => {
+        try{
+            const components = await GalleryJewelryService.ListAllGallery()
+            setComponentInfo(components)
+            console.log(componentInfo)
+        } catch(error) {
+            console.log(error)
+        }
+    }
+
+    useEffect(() => {
+        GetAll()
+    }, [])
 
     const renderCard=(card, index) =>{
         return(
