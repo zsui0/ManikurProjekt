@@ -14,9 +14,7 @@ const Profile = (user) => {
   const[userName,setUserName] = useState("");
   const[password,setPassword] = useState("");
   const[adatMod,setAdatMod] = useState("");
-
-  console.log(user);
-
+  
   function popupButton(lastName,firstName,email,userName){
     setButtonPopup(true);
     setAdatMod(true);

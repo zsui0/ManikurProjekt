@@ -4,7 +4,7 @@ const API_URL = "http://localhost:4000"
 
 const signup = (email, password, first, last, username, role) => {
   return axios
-    .post("http://localhost:5000/user/register", {email, password, first, last, username, role})
+    .post("http://localhost:5000/users/register", {email, password, first, last, username, role})
     .then((response) => {
       if(response.status === 201) {
         return true;
