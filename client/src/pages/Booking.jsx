@@ -1,42 +1,44 @@
-import { Calendar, momentLocalizer, Views} from 'react-big-calendar'
-import moment from 'moment'
-import 'react-big-calendar/lib/css/react-big-calendar.css'
-import 'react-big-calendar/lib/addons/dragAndDrop/styles.css'
-import withDragAndDrop from 'react-big-calendar/lib/addons/dragAndDrop'
-import React, { Fragment, useCallback, useMemo, useState, useEffect } from 'react'
-import PropTypes from 'prop-types'
-//import { Calendar, Views, DateLocalizer } from 'react-big-calendar'
-import 'react-big-calendar/lib/addons/dragAndDrop/styles.scss'
-import styles from '../styles/booking.css'
+import React, { Component } from "react";
+import { Calendar, momentLocalizer } from "react-big-calendar";
+import moment from "moment";
+import withDragAndDrop from "react-big-calendar/lib/addons/dragAndDrop";
+
+import "../App.css";
+import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
+import "react-big-calendar/lib/css/react-big-calendar.css";
+import "../styles/booking.css";
+import BookingServices from "./BookingServices";
 import BookingService from '../services/booking-service';
 
 
 // Setup the localizer by providing the moment (or globalize, or Luxon) Object
 // to the correct localizer.
-const localizer = momentLocalizer(moment) // or globalizeLocalizer
+const localizer = momentLocalizer(moment);
+const DnDCalendar = withDragAndDrop(Calendar);
+const ma = moment();
 
-const dnd = withDragAndDrop(Calendar)
-const today = new Date()
+ class Booking extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      events: [
+        {
+          start: moment().toDate(),
+          end: moment().add(1, "hours").toDate(),
+          title: "manikur",
+          id: 0,
+        },
+        {
+          start: moment().add(1, "day").toDate(),
+          end: moment().add(1, "day").add(1, "hours").toDate(),
+          title: "pedikur",
+          id: 1,
+        },
+      ],
+    };
+  }
 
-/*   var events = [
-  {
-    title: 'My Event',
-    start: new Date('2023-03-12T13:45:00'), // 1679609700000
-    end: new Date('2023-03-12T16:00:00'), // 167961150000
-    isDraggable: true,
-    resizable: true,
-  },
-  {
-    title:'masodik',
-    start: new Date('2023-03-13T13:45:00'), // 1678791600000
-    end: new Date('2023-03-13T16:00:00') // 1678793400000
-  } 
-]  */ 
-
-const Booking = (props) => {
-  const [eventss, setEvents] = useState([]);
-
-  const getAllBookings = async () => {
+  getAllBookings = async () => {
     const data = await BookingService.getEvents();
     var keys = Object.keys(data);
     for (var i = 0; i < keys.length; i++) {
@@ -45,47 +47,118 @@ const Booking = (props) => {
 
     }
     if (data != null){
-      setEvents(data)
+      this.state.events = data;
+      console.log(this.state.events)
     }
   }
-  useEffect(() => {
-    getAllBookings()
-  }, []); 
+  componentDidMount() {    
+    this.getAllBookings();  
+  }  
+  componentDidUpdate() {    
+    this.getAllBookings();   
+  } 
 
-    return (
-      <div className="myCustomHeight" styles="height: 10">
-        <Calendar
-          localizer={localizer}      
-          startAccessor="start"
-          endAccessor="end"
-          events={eventss}
-          draggableAccessor={(event) => true}
-          defaultView={Views.WEEK}
-          step={15}
-          views={['week','day']}
-          min={
-            new Date(
-              today.getFullYear(), 
-              today.getMonth(), 
-              today.getDate(), 
-              8
-            )
-          }  
-          max={
-            new Date(
-              today.getFullYear(), 
-              today.getMonth(), 
-              today.getDate(), 
-              20
-            )
+  onEventResize = (data) => {
+    /* Ha szeretnénk, goyg csinájon valamit resize közben
+    const { start, end } = data;
+
+    this.setState((state) => {
+      state.events[data.event.id].start = start;
+      state.events[data.event.id].end = end;
+      return { events: [...state.events] };
+    });*/
+  };
+
+  onEventDrop = (data) => {
+    console.log(data);
+    const { start, end} = data;
+
+    this.setState((state) => {
+      state.events[data.event.id].start = start;
+      state.events[data.event.id].end = end;
+      return { events: [...state.events] };
+    });
+  };
+
+  handleTitle = (title) =>{
+    this.setState({act_title: title})
+  }
+
+  onDropFromOutside = (data) => {
+    console.log(data);
+    this.setState((state) => {
+      state.events[state.events.length]= {
+        start: data.start,
+        end:  moment(data.start).add(1,"hours").toDate(),
+        title: this.state.act_title,
+        id: state.events.length
+      };
+      return { events: [...state.events] };
+    });
+  }
+
+  sendEvents = async () =>{
+    try {
+    this.state.events.forEach(async event =>
+      await BookingService.addEvent(event.title, event.start)
+      .then(
+        (error) =>{
+            console.log(error);
+        }  
+        )).then(
+          () =>{
+            window.location.reload();
           }
-        />    
+        )
+
+      } catch (error){
+        console.log(error);
+      }
+      
+  }
+
+
+  render() {
+    return (
+      <div className="App">
+        <div className="allbooking">
+          <div className="calendar">
+          <DnDCalendar
+            defaultDate={moment().toDate()}
+            defaultView="week"
+            events={this.state.events}
+            localizer={localizer}
+            onEventDrop={this.onEventDrop}
+            onEventResize={this.onEventResize}
+            onDropFromOutside={this.onDropFromOutside}
+            step={15}
+            min={
+              new Date(
+                ma.get("year"), 
+                ma.get("month"), 
+                ma.get("date"), 
+                8
+              )
+            }
+            max={
+              new Date(
+                ma.get("year"), 
+                ma.get("month"), 
+                ma.get("date"), 
+                20
+              )
+            }
+          />
+          </div>
+            <BookingServices onDragFromOutside ={ this.handleTitle} />
+            <div className="booking-button">
+              <button onClick={this.sendEvents}>Foglalások elküldése</button>
+            </div>
+        </div>
       </div>
     );
+
+  }
 }
 
-
-
-
-  
 export default Booking;

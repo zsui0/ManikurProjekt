@@ -4,3 +4,42 @@
   .rbc-time-view .rbc-header {
     border-bottom: none;
   }
+
+  .allbooking {
+    max-width: 100%;
+    display: flex;
+  }
+  .calendar{
+    width: 70%;
+  
+    float: 'left';
+  }
+  .servicepicker{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    float: 'left';
+    width: 30%;
+    height: 900px;
+    
+    padding: 10px;
+  }
+  .service{
+    width: 130px;
+    height: 80px;
+    margin: 10px;
+    padding: 5px;
+    background-color: rgb(104, 156, 235);
+    border-color: rgb(41, 86, 153);
+    border-width: 5px;
+    text-align: center;
+    cursor: move;
+  }
+  .booking-button{
+    width:30%;
+    height:auto;
+  }
+  
+  [draggable] {
+    user-select: none;
+  }
+  
