@@ -50,18 +50,18 @@ router.patch('/password', authenticateToken, async (req, res) => {
 router.post('/register', async (req, res) => {  
   try {
     const checkUserByEmail = await User.findOne({email: req.body.email})
-    const checkUserByName = await User.findOne({userName: req.body.userName})
+    const checkUserByName = await User.findOne({userName: req.body.username})
     if(checkUserByEmail != null) {
       res.status(400).json({message: `User already exists with '${req.body.email}' email`})
     } else if(checkUserByName != null) {
-      res.status(400).json({message: `User already exists with '${req.body.userName}' name`})
+      res.status(400).json({message: `User already exists with '${req.body.username}' name`})
     }
 
     const hashedPassword = await bcrypt.hash(req.body.password, 10) // 10 -> salt
     const user = new User({
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      userName: req.body.userName,
+      firstName: req.body.first,
+      lastName: req.body.last,
+      userName: req.body.username,
       email: req.body.email,
       password: hashedPassword
     })
