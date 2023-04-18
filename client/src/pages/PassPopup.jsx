@@ -42,8 +42,8 @@ function Popup(props) {
                     <input className="text-input" id="nOut" type="text" defaultValue="123456" onChange={(e)=>setPassOut(e.target.value)}></input>
                 </div>                
                 <div>
-                    <button type="button" className="pButtonLeft" onClick={()=>props.setTrigger(false)}>Vissza</button>
-                    <button type="button" className="pButtonRight" onClick={()=>setNewPass()}>Mentés</button>
+                    <button className="pButtonLeft" onClick={()=>props.setTrigger(false)}>Vissza</button>
+                    <button className="pButtonRight" onClick={()=>setNewPass()}>Mentés</button>
                 </div>
                 </form>
                 {props.children}
