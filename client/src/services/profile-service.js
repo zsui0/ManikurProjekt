@@ -13,9 +13,17 @@ const changePass = (newPass,loggedEmail) => {
     })
 }
 
+const changeProfileData = (lastname, firstname, email, username) => {
+  return axios 
+    .patch(API_URL+"/users/profiledata",{lastname, firstname, email, username},{ headers: authHeader() })
+    .then((response) => {
+      return response.data.message;
+    })
+}
 
 const ProfileService = {
-  changePass
+  changePass,
+  changeProfileData
 }
 
 export default ProfileService;

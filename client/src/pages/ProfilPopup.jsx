@@ -1,5 +1,9 @@
 import React, { useState,useEffect } from "react";
 import '../styles/Popup.scss'
+import { useNavigate } from "react-router-dom"; 
+
+import ProfileService from "../services/profile-service";
+import AuthService from "../services/auth.service";
 
 
 
@@ -9,6 +13,29 @@ function Popup(props) {
     const [firstNameOut, setFirstNameOut] = useState({});
     const [emailOut, setEmailOut] = useState({});
     const [userNameOut, setUserNameOut] = useState({});
+
+    const navigate = useNavigate();
+
+    const logOut = () => {
+        AuthService.logout();
+    }
+
+    const changeData = async () => {
+        try{
+            await ProfileService.changeProfileData(lastNameOut,firstNameOut,emailOut,userNameOut)
+                .then((response) => {
+                    console.log(response)
+                    logOut() 
+                    navigate("/login")
+                    window.location.reload()
+                }, (error) => {
+                    console.log(error)
+                })
+            //logOut()
+        } catch(error) {
+            console.log(error)
+        }
+    }
 
     useEffect(() => {        
         setLastNameOut(props.lastName);
@@ -44,7 +71,7 @@ function Popup(props) {
                 </div>
                 <div>
                     <button className="pButtonLeft" onClick={()=>props.setTrigger(false)}>Vissza</button>
-                    <button className="pButtonRight" onClick={()=>output()}>Mentés</button>
+                    <button type="button" className="pButtonRight" onClick={()=>changeData()}>Mentés</button>
                 </div>
                 </form>
                 {props.children}

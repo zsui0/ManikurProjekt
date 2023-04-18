@@ -47,6 +47,29 @@ router.patch('/password', authenticateToken, async (req, res) => {
   }
 })
 
+router.patch('/profiledata', authenticateToken, async (req,res) => {
+  try{
+    let changeUser = await User.findOne({email: req.user.email})
+    if(req.body.lastname != ""){
+      changeUser.lastName = req.body.lastname
+    }  
+    if(req.body.firstname != ""){
+      changeUser.firstName = req.body.firstname
+    } 
+    if(req.body.username != ""){
+      changeUser.userName = req.body.username
+    }  
+    if(req.body.email != ""){
+      changeUser.email = req.body.email
+    } 
+    await changeUser.save()
+    // res.status(200).json({message: "Logged In", name: user.userName, firstName: user.firstName, lastName: user.lastName, email: user.email, role: user.role, accessToken: accessToken, refreshToken: refreshToken})
+    return res.status(204).json({message: "Sikeres adat változtatás"})
+  } catch (error) {
+    return res.status(500).json({message: error.message})
+  }
+})
+
 router.post('/register', async (req, res) => {  
   try {
     const checkUserByEmail = await User.findOne({email: req.body.email})
