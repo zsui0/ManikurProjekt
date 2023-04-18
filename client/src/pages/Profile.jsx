@@ -3,7 +3,7 @@ import AuthService from '../services/auth.service';
 import Button from 'react-bootstrap/Button';
 import ProfilPopup from "./ProfilPopup";
 import PassPopup from "./PassPopup";
-import '../styles/Profil.scss'
+import '../styles/Profil.scss';
   
 const Profile = (user) => {
   
@@ -14,9 +14,7 @@ const Profile = (user) => {
   const[userName,setUserName] = useState("");
   const[password,setPassword] = useState("");
   const[adatMod,setAdatMod] = useState("");
-
-  console.log(user);
-
+  
   function popupButton(lastName,firstName,email,userName){
     setButtonPopup(true);
     setAdatMod(true);
@@ -38,14 +36,14 @@ const Profile = (user) => {
       {user.currentUser === undefined ? ( <></> 
             ) : (
               <div class="form-box">
-              <div class="form-value">
-                <h5>Vezetéknév: {user.currentUser.lastName}</h5>                
-                <h5>Keresztnév: {user.currentUser.firstName}</h5>                
-                <h5>E-mail cím: {user.currentUser.email}</h5>                
-                <h5>Felhasználónév: {user.currentUser.name}</h5>
-                <button className="profilButton" onClick={()=> popupButton(user.currentUser.lastName,user.currentUser.firstName,user.currentUser.email,user.currentUser.name)}>Adatok szerkesztése</button>
-                <button className="profilButton" onClick={()=> passPopupButton("")}>Jelszómódosítás</button>
-              </div>  
+                <div class="form-value">
+                  <h5>Vezetéknév: {user.currentUser.lastName}</h5>                
+                  <h5>Keresztnév: {user.currentUser.firstName}</h5>                
+                  <h5>E-mail cím: {user.currentUser.email}</h5>                
+                  <h5>Felhasználónév: {user.currentUser.name}</h5>
+                  <button class="profilButton1" onClick={()=> popupButton(user.currentUser.lastName,user.currentUser.firstName,user.currentUser.email,user.currentUser.name)}>Adatok szerkesztése</button>
+                  <button class="profilButton2" onClick={()=> passPopupButton("")}>Jelszómódosítás</button>
+                </div>  
               </div>
             )}
     </section>
