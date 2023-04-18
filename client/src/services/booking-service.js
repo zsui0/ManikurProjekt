@@ -4,8 +4,7 @@ import moment from 'moment'
 
 const API_URL = "http://localhost:5000"
 
-const addEvent = (title, startDate) => {
-  let endDate = moment(startDate).add(60, 'm').toDate();
+const addEvent = (title, startDate, endDate) => {
   return axios
     .post(API_URL+"/booking",{title, startDate, endDate},{ headers: authHeader() })
     .then((response) => {

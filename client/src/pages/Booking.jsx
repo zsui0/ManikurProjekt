@@ -85,7 +85,7 @@ const ma = moment();
   sendEvents = async () =>{
     try {
     this.state.events.forEach(async event =>
-      await BookingService.addEvent(event.title, event.start)
+      await BookingService.addEvent(event.title, event.start, event.end)
       .then(
         (error) =>{
             console.log(error);
