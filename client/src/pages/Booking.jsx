@@ -21,20 +21,7 @@ const ma = moment();
   constructor(props) {
     super(props);
     this.state = {
-      events: [
-        {
-          start: moment().toDate(),
-          end: moment().add(1, "hours").toDate(),
-          title: "manikur",
-          id: 0,
-        },
-        {
-          start: moment().add(1, "day").toDate(),
-          end: moment().add(1, "day").add(1, "hours").toDate(),
-          title: "pedikur",
-          id: 1,
-        },
-      ],
+      events: [],
     };
   }
 
@@ -44,19 +31,17 @@ const ma = moment();
     for (var i = 0; i < keys.length; i++) {
       data[i].start = new Date(data[i].start.substring(0,data[i].start.length-2))
       data[i].end = new Date(data[i].end.substring(0,data[i].end.length-2))
+      data[i].id = i;
 
     }
     if (data != null){
       this.state.events = data;
-      console.log(this.state.events)
+      console.log(this.state.events);
     }
   }
   componentDidMount() {    
     this.getAllBookings();  
   }  
-  componentDidUpdate() {    
-    this.getAllBookings();   
-  } 
 
   onEventResize = (data) => {
     /* Ha szeretnénk, goyg csinájon valamit resize közben
@@ -105,12 +90,8 @@ const ma = moment();
         (error) =>{
             console.log(error);
         }  
-        )).then(
-          () =>{
-            window.location.reload();
-          }
-        )
-
+        ))
+          window.location.reload();
       } catch (error){
         console.log(error);
       }
@@ -131,6 +112,7 @@ const ma = moment();
             onEventDrop={this.onEventDrop}
             onEventResize={this.onEventResize}
             onDropFromOutside={this.onDropFromOutside}
+            views={['week','day']}
             step={15}
             min={
               new Date(
