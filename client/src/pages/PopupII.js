@@ -1,9 +1,24 @@
 import React, { useState,useEffect } from "react";
 import '../styles/Popup.scss'
 
+import GalleryJewelryService from "../services/gallery-jewelry-service";
+
 function Popup2(props) {
 
     const [fileNameOut, setFileNameOut] = useState({});
+
+    const AddGallery = async () => {
+        try{
+            await GalleryJewelryService.AddGallery(fileNameOut)
+                .then((response) => {
+                    console.log(response)
+                }, (error) => {
+                    console.log(error)
+                })
+        } catch(error) {
+            console.log(error)
+        }
+    }
 
     useEffect(() => {
         setFileNameOut(props.fileName);        
@@ -24,7 +39,7 @@ function Popup2(props) {
                 </div>
                 <div>
                     <button className="pButtonLeft" onClick={()=>props.setTrigger(false)}>Vissza</button>
-                    <button className="pButtonRight" onClick={()=>output()}>Mentés</button>
+                    <button className="pButtonRight" onClick={()=>AddGallery()}>Mentés</button>
                 </div>
                 </form>
                 {props.children}

@@ -53,7 +53,7 @@ const Profile = (user) => {
     <ProfilPopup trigger={buttonPopup} setTrigger={setButtonPopup}  lastName={user.currentUser.lastName} firstName={user.currentUser.firstName} email={user.currentUser.email} userName={user.currentUser.name}>  
     </ProfilPopup>)
     :
-    (<PassPopup trigger={buttonPopup} setTrigger={setButtonPopup}  pass={""}>      
+    (<PassPopup trigger={buttonPopup} setTrigger={setButtonPopup}  pass={""} email={email}>      
     </PassPopup>)
     }
     </>

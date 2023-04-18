@@ -3,10 +3,11 @@ import {Card} from "react-bootstrap";
 import '../styles/cards.scss'
 import Button from 'react-bootstrap/Button';
 import Popup from "./Popup";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
+import GalleryJewelryService from "../services/gallery-jewelry-service";
 
-
+/*
 const componentInfo=[
     {image: "else1.jpg", price: "22000"},
     {image: "else2.jpg", price: "46000"},
@@ -14,18 +15,34 @@ const componentInfo=[
     {image: "else4.jpg", price: "62000"},
     {image: "else5.jpg", price: "47000"},
 ];
+*/
 
 const Egyeb=(user)=>{
 
     const[buttonPopup, setButtonPopup] = useState(false);
     const[cardPrice, setCardPrice] = useState("");
     const[cardFileName, setCardFileName] = useState("");
+    const [componentInfo, setComponentInfo] = useState([]);
 
     function popupButton(price,fileName){
         setButtonPopup(true);
         setCardPrice(price);
         setCardFileName(fileName)
     }
+
+    const GetAll = async () => {
+        try{
+            const components = await GalleryJewelryService.ListAllJewelry("egyeb")
+            setComponentInfo(components)
+            console.log(componentInfo)
+        } catch(error) {
+            console.log(error)
+        }
+    }
+
+    useEffect(() => {
+        GetAll()
+    }, [])
 
     const renderCard=(card, index) =>{
         return(
@@ -48,7 +65,7 @@ const Egyeb=(user)=>{
                     {user.currentUser.role === "admin" ? ( 
                         <Card style={{ width: '18rem' }}className="card">
                             <Card.Body>   
-                                <Button variant = "custom" onClick={()=> popupButton("","")}>Új ékszer felvitele</Button>    
+                                <Button style={{width: '14rem', border: "solid black 1px" }} variant = "custom" onClick={()=> popupButton("","")}>Új ékszer felvitele</Button>    
                             </Card.Body>
                         </Card> 
                     ) : (
@@ -57,7 +74,7 @@ const Egyeb=(user)=>{
                 </>
             )}
         </div>
-        <Popup trigger={buttonPopup} setTrigger={setButtonPopup}  price={cardPrice} fileName={cardFileName}>  
+        <Popup trigger={buttonPopup} setTrigger={setButtonPopup}  price={cardPrice} fileName={cardFileName} type={"egyeb"}>  
         </Popup>
         
     </>)

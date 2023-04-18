@@ -1,19 +1,36 @@
 import React, { useState,useEffect } from "react";
 import '../styles/Popup.scss'
 
+import ProfileService from "../services/profile-service";
+
 
 
 function Popup(props) {
     
-    const [passOut, setPassOut] = useState({});
+    const [passOut, setPassOut] = useState("");
+    const [emailOut, setEmailOut] = useState("");
+
+    const setNewPass = async () => {
+        console.log("PopUp log:"+emailOut)
+        try{
+            await ProfileService.changePass(passOut,emailOut)
+                .then((resp) => {
+                    console.log(resp)
+                },
+                (error) => {
+                    console.log(error)
+                })
+        } catch(err) {
+            console.log(err);
+        }
+    }
 
     useEffect(() => {        
         setPassOut(props.pass);
-    }, []);
-
-    function output(){
-        props.setTrigger(false);
-    }
+        //console.log("useffect:")
+        if(emailOut == "")
+            setEmailOut(props.email);
+    }, [emailOut]);
 
     return (props.trigger) ?( 
         <div className="popup">
@@ -25,8 +42,8 @@ function Popup(props) {
                     <input className="text-input" id="nOut" type="text" defaultValue="123456" onChange={(e)=>setPassOut(e.target.value)}></input>
                 </div>                
                 <div>
-                    <button className="pButtonLeft" onClick={()=>props.setTrigger(false)}>Vissza</button>
-                    <button className="pButtonRight" onClick={()=>output()}>Mentés</button>
+                    <button type="button" className="pButtonLeft" onClick={()=>props.setTrigger(false)}>Vissza</button>
+                    <button type="button" className="pButtonRight" onClick={()=>setNewPass()}>Mentés</button>
                 </div>
                 </form>
                 {props.children}
