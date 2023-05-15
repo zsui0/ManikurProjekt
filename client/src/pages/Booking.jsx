@@ -88,9 +88,11 @@ const user = JSON.parse(localStorage.getItem("user"));
           }
         });
         if(nooccupied===false){
-          return false;
+          alert("Átfedés már foglalt időponttal!")
+          return false;          
         }else if((((earliestbegin.getTime()-latestend.getTime())>3600000)&&
         (((start.getTime()!=latestend.getTime()) && ((start.getTime()-latestend.getTime())<2400000))||((end.getTime()!=earliestbegin.getTime())&&((earliestbegin.getTime()-end.getTime())<2400000))))){
+          alert("A kiválasztott időpont nem lehetséges! Kérjük hagyjon legalább negyven percet az időpontok között vagy illeszkedjen egy szomszédos időponthoz!")
           return false;
         }
         else{
@@ -133,9 +135,6 @@ const user = JSON.parse(localStorage.getItem("user"));
             console.log(error);
         }  
         )
-    }
-    else{
-      alert("A kiválasztott időpont nem lehetséges! Kérjük hagyjon legalább negyven percet az időpontok között vagy illeszkedjen egy szomszédos időponthoz!")
     }
   }
 
