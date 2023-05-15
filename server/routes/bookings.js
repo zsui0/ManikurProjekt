@@ -22,23 +22,16 @@ router.post('/', authenticateToken,  async (req, res) => {
 
 router.get('/', authenticateToken, async (req, res) => {
   try{
-    const bookings = await Booking.find().lean().select('-_id title start end userId')
+    const bookings = await Booking.find().lean().select('_id title start end userId')
     res.status(200).json({result: bookings})
   } catch (error) {
     res.status(500).json({message: error.message})
   }
 })
 
-router.delete('/', authenticateToken, async (req, res) => {
+router.put('/remove', authenticateToken,  async (req, res) => {
   try{
-    await Booking.findByIdAndDelete(req.body.bookingID, function (err,docs){
-      if(err){
-        console.log(err)
-      }
-      else{
-        console.log("Deleted : ", docs);
-      }
-    });
+    await Booking.deleteOne({ _id: req.body.bookingID });
     res.status(200).json({message: "Foglalás sikeresen törölve!"})
   } catch (error) {
     res.status(500).json({message: error.message})

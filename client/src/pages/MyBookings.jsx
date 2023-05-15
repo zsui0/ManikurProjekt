@@ -7,6 +7,24 @@ import BookingService from '../services/booking-service';
 
 const MyBookings = (user) => {
   const [rowData,setRowData] = useState([]);
+
+  const deleteBooking = async (e) => {
+    console.log(e.target.value)
+    try{
+      await BookingService.removeEvents(e.target.value)
+        .then((resp) => {
+          window.location.reload();
+          //console.log(resp)
+        },
+        (error) => {
+          console.log(error)
+        }
+      )
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  
   const getAllBookings = async () => {
     const data = await BookingService.getEvents();
 
@@ -21,7 +39,7 @@ const MyBookings = (user) => {
     
     for(var i=0;i<data.length;i++){     
       if(user.currentUser.userid == data[i].userId.toString()){
-      rows.push({title: data[i].title,start: data[i].start.substring(4,21), end: data[i].end.substring(4,21),button: <Button >Törlés</Button>});
+      rows.push({title: data[i].title,start: data[i].start.substring(4,21), end: data[i].end.substring(4,21),button: <Button value={data[i]._id} onClick={(e) => deleteBooking(e)}>Törlés</Button>});
       }
       setRowData(rows);
     }
