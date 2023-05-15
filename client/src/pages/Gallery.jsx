@@ -73,7 +73,7 @@ const Gallery=(user)=>{
                 </>
             )}           
         </div>
-        <PopupII trigger={buttonPopup} setTrigger={setButtonPopup}  fileName={cardFileName}>  
+        <PopupII trigger={buttonPopup} setTrigger={setButtonPopup}  fileName={cardFileName} type={"gallery"}>  
         </PopupII>
     </>)
 

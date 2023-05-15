@@ -19,9 +19,9 @@ onChangeHandler=event=>{
   console.log(this.state.selectedFile);
 } 
   onClickHandler = () => {
-    const data = new FormData() 
-      data.append('file', this.state.selectedFile[0])
-    axios.post("http://localhost:5000/file-manager/upload", data, {
+    const data = new FormData();
+      data.append('file', this.state.selectedFile[0]);
+    axios.post("http://localhost:5000/file/upload", data, {
     })
     }
 
