@@ -112,15 +112,7 @@ const user = JSON.parse(localStorage.getItem("user"));
             console.log(error);
         }  
         )
-      window.location.reload();
-      
     }
-    /*
-    this.setState((state) => {
-      state.events[1].start = start;
-      state.events[1].end = end;
-      return { events: [...state.events] };
-    });*/
   };
 
   handleTitle = (title, length) =>{
@@ -141,18 +133,6 @@ const user = JSON.parse(localStorage.getItem("user"));
             console.log(error);
         }  
         )
-      window.location.reload();
-      //window.location.reload();
-      /*
-      this.setState((state) => {
-        state.events[state.events.length]= {
-          start: data.start,
-          end:  end,
-          title: this.state.act_title,
-          id: state.events.length
-        };
-        return { events: [...state.events] };
-      });*/
     }
     else{
       alert("A kiválasztott időpont nem lehetséges! Kérjük hagyjon legalább negyven percet az időpontok között vagy illeszkedjen egy szomszédos időponthoz!")
