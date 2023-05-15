@@ -8,16 +8,20 @@ const MyBookings = (user) => {
   
   const columns = [
     { key: 'id', name: 'ID' },
-    { key: 'title', name: 'Title' }
+    { key: 'title', name: 'Title' },
+    { key: 'start', name: 'Start' },
+    { key: 'end', name: 'End' }
   ];
   
   const rows = [
-    { id: 0, title: 'Example' },
-    { id: 1, title: 'Demo' }
+    { id: 0, title: 'Example', start: new Date().getTime(), end: "2030.32.22" },
+    { id: 1, title: 'Demo', start: new Date().getTime(), end: "2030.32.22"  }
   ];
 
   return(
-    <DataGrid columns={columns} rows={rows} />
+    <div style={{"width": "80%", "margin": "auto"}} >
+      <DataGrid columns={columns} rows={rows} />
+    </div>
   );
 };
 

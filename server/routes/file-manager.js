@@ -4,19 +4,23 @@ const jwt = require('jsonwebtoken')
 const User = require('../models/user')
 const multer = require('multer')
 
-var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-  cb(null, 'public')
-},
-filename: function (req, file, cb) {
-  cb(null, Date.now() + '-' +file.originalname )
-}
-})
 
-var upload = multer({ storage: storage }).single('file')
 
-router.post('/upload',authenticateToken, function(req, res) {
+
+
+router.post('/upload', function(req, res) {
      
+  var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+    cb(null, '../public')
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + '-' +file.originalname )
+  }
+  })
+
+  var upload = multer({ storage: storage }).single('file')
+
   upload(req, res, function (err) {
          if (err instanceof multer.MulterError) {
              return res.status(500).json(err)
