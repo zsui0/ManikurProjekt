@@ -22,8 +22,9 @@ const MyBookings = (user) => {
     }
     let rows = [];
     for(var i=0;i<data.length;i++){
-      rows.push({title: data[i].title,start: data[i].start.substring(4).concat(" ",data[i].start.substring(10,14)), end: "2",button: <Button>Törlés</Button>});
-      console.log(data[i].userId);
+      if(user.currentUser.userId = data[i].userId){
+      rows.push({title: data[i].title,start: data[i].start.substring(4,21), end: data[i].end.substring(4,21),button: <Button >Törlés</Button>});
+      }
       setRowData(rows);
     }
   }
@@ -35,9 +36,9 @@ const MyBookings = (user) => {
   console.log(events);
 
   const columns = [
-    { key: 'title', name: 'Title' },
-    { key: 'start', name: 'Start' },
-    { key: 'end', name: 'End' },
+    { key: 'title', name: 'Típus' },
+    { key: 'start', name: 'Kezdet' },
+    { key: 'end', name: 'Vég' },
     { key: 'button', name: 'Törlés'} 
   ];
   
