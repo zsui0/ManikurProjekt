@@ -92,7 +92,7 @@ const user = JSON.parse(localStorage.getItem("user"));
           return false;          
         }else if((((earliestbegin.getTime()-latestend.getTime())>3600000)&&
         (((start.getTime()!=latestend.getTime()) && ((start.getTime()-latestend.getTime())<2400000))||((end.getTime()!=earliestbegin.getTime())&&((earliestbegin.getTime()-end.getTime())<2400000))))){
-          alert("A kiválasztott időpont nem lehetséges! Kérjük hagyjon legalább negyven percet az időpontok között vagy illeszkedjen egy szomszédos időponthoz!")
+          alert("A kiválasztott időpont nem lehetséges! Kérjük hagyjon legalább 40 percet az időpontok között vagy illeszkedjen egy szomszédos időponthoz!")
           return false;
         }
         else{
@@ -176,12 +176,14 @@ return(
             onEventResize={this.onEventResize}
             onDropFromOutside={this.onDropFromOutside}
             eventPropGetter={(event) => {
-              let backgroundColor = 'grey';
+              let backgroundColor = 'lightgrey';
+              let color = 'black';
               if(event.userId === user._id)
               {
-                backgroundColor = 'green';
+                backgroundColor = 'pink';
+                color = 'black';
               }
-              return { style: { backgroundColor } }
+              return { style: { backgroundColor, color } }
             }}
             views={['week','day']}
             step={10}
