@@ -44,6 +44,10 @@ const logOut = () => {
                   </UncontrolledDropdown>
 
                   <NavItem className="d-flex align-items-center">
+                    <NavLink className="font-weight-bold" href="/gallery">Galléria</NavLink>
+                  </NavItem>
+
+                  <NavItem className="d-flex align-items-center">
                     <NavLink className="font-weight-bold" href="/about">Rólam</NavLink>
                   </NavItem>
                   

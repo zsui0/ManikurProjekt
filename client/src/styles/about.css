@@ -1,11 +1,14 @@
 .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    margin: 10px;
+    margin: auto;
     float: center;
     width: 50%;
     margin-bottom: 16px;
     padding: 0 8px;
-    background-color: antiquewhite;
+    background-color: rgb(247, 201, 239);
+    text-align:justify;
+    display: flex;
+    
 }
 
 
@@ -22,6 +25,10 @@
     color: grey;
 }
   
+.kormos{
+  color: black !important;
+  font-size: 50px;
+}
 
 .about {
     padding: 50px;

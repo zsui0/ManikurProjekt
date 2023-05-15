@@ -40,9 +40,10 @@ const Home = (user) => {
       </Carousel.Caption>
     </Carousel.Item>
   </Carousel>
-  <div class="galleryButtonDiv">
+  
+  {/*<div class="galleryButtonDiv">
     <a href="/gallery"><img class="galleryButton" src={require('../icons/gallery.png')} alt="galéria" style={{width: 300}}/></a>
-  </div>
+  </div>*/}
   </>
   );
 };

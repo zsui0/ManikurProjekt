@@ -42,8 +42,8 @@ function Popup(props) {
                 <h1>Kérem adja meg az adatokat:</h1>
                 <form>
                 <div className="inputDiv">
-                    <label className="input-label">Képfájl neve:</label>
-                    <input className="text-input" id="nOut" type="text" defaultValue={props.fileName} onChange={(e)=>setFileNameOut(e.target.value)}></input>
+                    <label className="input-label">Válasszon ki egy fájlt:</label>
+                    <input className="text-input" id="nOut" type="file" defaultValue={props.fileName} onChange={(e)=>setFileNameOut(e.target.value)}></input>
                 </div>
                 <div className="inputDiv vanish">
                     <label className="input-label">Ár:</label>
