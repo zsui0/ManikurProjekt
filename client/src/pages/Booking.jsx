@@ -65,18 +65,39 @@ const user = JSON.parse(localStorage.getItem("user"));
   doesItFit = (start, end) =>{
     console.log(start)
     console.log(end)
+    var nooccupied=true
+    var latestend=new Date(start.getFullYear(),start.getMonth(),start.getDate(),8,0,0,0)
+    var earliestbegin=new Date(start.getFullYear(),start.getMonth(),start.getDate(),16,0,0,0)
+    var day=start.getDate()    
     if(start.getHours()>=8)
     { 
       if(end.getHours()< 16 || (end.getHours() === 16 && end.getMinutes() ===0) )
       {
         
         this.state.events.forEach(event =>{
-          if((moment(event.start) < moment(start) && moment(event.end) > moment(start)) ||(moment(event.start) < moment(end) && moment(event.end) > moment(end)))
-          {
-            return false;
+          if(((event.start) <= (start) && (event.end) > (start)) ||((event.start) < (end) && (event.end) >= (end)))
+          {    
+            nooccupied=false;            
+          }
+          if(event.start.getDate()===day){
+            console.log("bejöttünk az earliestbegintestbe az elejere")
+            if((event.end)<=(start) && (event.end)>latestend){                
+              latestend=(event.end);
+            }else if((event.start)>=(end) && (event.start)<earliestbegin){
+              console.log("bejöttünk az earliestbegintestbe")
+              earliestbegin=(event.start);
+            }
           }
         });
-        return true;
+        if(nooccupied===false){
+          return false;
+        }else if((((earliestbegin.getTime()-latestend.getTime())>3600000)&&
+        (((start.getTime()!=latestend.getTime()) && ((start.getTime()-latestend.getTime())<2400000))||((end.getTime()!=earliestbegin.getTime())&&((earliestbegin.getTime()-end.getTime())<2400000))))){
+          return false;
+        }
+        else{
+          return true;
+        }
       }
     }
     return false;
