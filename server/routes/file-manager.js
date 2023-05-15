@@ -3,35 +3,29 @@ const router = express.Router()
 const jwt = require('jsonwebtoken')
 const User = require('../models/user')
 const multer = require('multer')
+//const uploads = multer({ dest: "uploads/" });
 
+var filepath = "";
 
-  
-
-
-router.post('/upload_gyuru', function(req, res) {
-
-  var storage = multer.diskStorage({
+var storage = multer.diskStorage({
     destination: function (req, file, cb) {
-    cb(null, '../client/public')
+    cb(null, './public')
   },
   filename: function (req, file, cb) {
     cb(null, Date.now() + '-' +file.originalname )
   }
   })
 
-  var upload = multer({ storage: storage }).single('file')
+  var upload = multer({ storage: storage })
+  
 
-  console.log(req.body)
-  upload(req, res, function (err) {
-         if (err instanceof multer.MulterError) {
-             return res.status(500).json(err)
-         } else if (err) {
-             return res.status(500).json(err)
-         }
-    return res.status(200).send(req.file)
-  })
+
+router.post('/upload', upload.single('file'), function(req, res) {
+  console.log(req.body.type)
+
+  return res.status(200).send({message: "done"});
 });
-
+/*
 router.post('/upload_nyaklanc', function(req, res) {
 
   var storage = multer.diskStorage({
@@ -79,7 +73,7 @@ router.post('/upload_gallery', function(req, res) {
     return res.status(200).send(req.file)
   })
 });
-
+*/
 
 function authenticateToken(req, res, next) { // middleware
   const authHeader = req.headers['authorization']

@@ -22,7 +22,7 @@ onClickHandler = (e) => {
     const data = new FormData() 
     data.append('file', this.state.selectedFile)
     data.append('type', "galleria")
-    axios.post("http://localhost:5000/file/upload_gallery", data, {})
+    axios.post("http://localhost:5000/file/upload", data, {})
       .then(res => { // then print response status
         console.log(res.statusText)
         
