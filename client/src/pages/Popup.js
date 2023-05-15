@@ -44,7 +44,7 @@ function Popup(props) {
                     <label className="input-label">Ár:</label>
                     <input className="text-input" id="pOut"type="text" defaultValue={props.price} onChange={(e)=>setPriceOut(e.target.value)}></input>
                 </div>                
-                <UploadHandler props={props}/>
+                <UploadHandler props={props} price={priceOut}/>
                 </form>
                 {props.children}
             </div>
