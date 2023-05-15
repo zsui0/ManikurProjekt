@@ -19,19 +19,17 @@ const MyBookings = (user) => {
     
     let rows = [];
     
-    for(var i=0;i<data.length;i++){
-      if(user.currentUser.userid == data[i].userId){
+    for(var i=0;i<data.length;i++){     
+      if(user.currentUser.userid == data[i].userId.toString()){
       rows.push({title: data[i].title,start: data[i].start.substring(4,21), end: data[i].end.substring(4,21),button: <Button >Törlés</Button>});
-      console.log(typeof(data[i].userId)); 
       }
-      console.log(typeof(user.currentUser.userid));
       setRowData(rows);
     }
   }
 
   useEffect(() => {
     getAllBookings();
-  }, []); 
+  }, [user]); 
 
 
   const columns = [
