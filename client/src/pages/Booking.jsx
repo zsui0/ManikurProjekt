@@ -204,9 +204,6 @@ return(
           />
           </div>
             <BookingServices onDragFromOutside ={ this.handleTitle} />
-            <div className="booking-button">
-              <button onClick={this.sendEvents}>Foglalások elküldése</button>
-            </div>
         </div>
       </div>
 
