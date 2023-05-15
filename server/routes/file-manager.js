@@ -5,14 +5,14 @@ const User = require('../models/user')
 const multer = require('multer')
 
 
+  
 
 
+router.post('/upload_gyuru', function(req, res) {
 
-router.post('/upload', function(req, res) {
-     
   var storage = multer.diskStorage({
     destination: function (req, file, cb) {
-    cb(null, '../public')
+    cb(null, '../client/public')
   },
   filename: function (req, file, cb) {
     cb(null, Date.now() + '-' +file.originalname )
@@ -21,6 +21,7 @@ router.post('/upload', function(req, res) {
 
   var upload = multer({ storage: storage }).single('file')
 
+  console.log(req.body)
   upload(req, res, function (err) {
          if (err instanceof multer.MulterError) {
              return res.status(500).json(err)
@@ -28,10 +29,57 @@ router.post('/upload', function(req, res) {
              return res.status(500).json(err)
          }
     return res.status(200).send(req.file)
+  })
+});
 
+router.post('/upload_nyaklanc', function(req, res) {
+
+  var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+    cb(null, '../client/public')
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + '-' +file.originalname )
+  }
   })
 
+  var upload = multer({ storage: storage }).single('file')
+
+  console.log(req.body)
+  upload(req, res, function (err) {
+         if (err instanceof multer.MulterError) {
+             return res.status(500).json(err)
+         } else if (err) {
+             return res.status(500).json(err)
+         }
+    return res.status(200).send(req.file)
+  })
 });
+
+router.post('/upload_gallery', function(req, res) {
+
+  var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+    cb(null, '../client/public')
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + '-' +file.originalname )
+  }
+  })
+
+  var upload = multer({ storage: storage }).single('file')
+
+  console.log(req.body)
+  upload(req, res, function (err) {
+         if (err instanceof multer.MulterError) {
+             return res.status(500).json(err)
+         } else if (err) {
+             return res.status(500).json(err)
+         }
+    return res.status(200).send(req.file)
+  })
+});
+
 
 function authenticateToken(req, res, next) { // middleware
   const authHeader = req.headers['authorization']

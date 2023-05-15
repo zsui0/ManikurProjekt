@@ -11,10 +11,9 @@ class UploadHandler extends Component {
    
   }
 onChangeHandler=event=>{
-  var files = event.target.files
-
      this.setState({
-     selectedFile: files,
+     selectedFile: event.target.files[0],
+     loaded: 0
   })
   console.log(this.state.selectedFile);
 } 
