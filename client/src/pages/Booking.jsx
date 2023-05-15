@@ -80,11 +80,9 @@ const user = JSON.parse(localStorage.getItem("user"));
             nooccupied=false;            
           }
           if(event.start.getDate()===day){
-            console.log("bejöttünk az earliestbegintestbe az elejere")
             if((event.end)<=(start) && (event.end)>latestend){                
               latestend=(event.end);
             }else if((event.start)>=(end) && (event.start)<earliestbegin){
-              console.log("bejöttünk az earliestbegintestbe")
               earliestbegin=(event.start);
             }
           }
@@ -105,8 +103,8 @@ const user = JSON.parse(localStorage.getItem("user"));
 
   onEventDrop = async (data) => {
     console.log(data);
-    const { start, end} = data;
-    if(true) //this.doesItFit(data.start, data.end)
+    const { start, end} = data;    
+    if(this.doesItFit(data.start, data.end))
     {
       await BookingService.changeEvent(data.event._id, moment(data.start).add(2,"hours"), moment(data.end).add(2,"hours"))
       .then(
@@ -154,7 +152,7 @@ const user = JSON.parse(localStorage.getItem("user"));
       });*/
     }
     else{
-      alert("A kiválasztott időpont nem lehetséges!")
+      alert("A kiválasztott időpont nem lehetséges! Kérjük hagyjon legalább negyven percet az időpontok között vagy illeszkedjen egy szomszédos időponthoz!")
     }
   }
 
