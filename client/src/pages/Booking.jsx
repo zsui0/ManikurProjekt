@@ -93,6 +93,8 @@ const user = JSON.parse(localStorage.getItem("user"));
             console.log(error);
         }  
         )
+      window.location.reload();
+      
     }
     /*
     this.setState((state) => {
@@ -120,6 +122,7 @@ const user = JSON.parse(localStorage.getItem("user"));
             console.log(error);
         }  
         )
+      window.location.reload();
       //window.location.reload();
       /*
       this.setState((state) => {
@@ -167,6 +170,14 @@ return(
             onEventDrop={this.onEventDrop}
             onEventResize={this.onEventResize}
             onDropFromOutside={this.onDropFromOutside}
+            eventPropGetter={(event) => {
+              let backgroundColor = 'grey';
+              if(event.userId === user._id)
+              {
+                backgroundColor = 'green';
+              }
+              return { style: { backgroundColor } }
+            }}
             views={['week','day']}
             step={10}
             min={
