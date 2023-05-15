@@ -22,10 +22,19 @@ const getEvents = () => {
     })
 }
 
+const removeEvents = () => {
+  return axios
+    .delete(API_URL+"/booking",{bookingID},{ headers: authHeader() })
+    .then(response => {
+      //console.log(response.data.result)
+      return response.data.result;
+    })
+}
 
 const BookingService = {
   addEvent,
-  getEvents
+  getEvents,
+  removeEvents
 }
 
 export default BookingService;

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import authHeader from '../services/auth-header';
 
 class UploadHandler extends Component {
   constructor(props) {
@@ -15,15 +16,13 @@ onChangeHandler=event=>{
      selectedFile: event.target.files[0],
      loaded: 0
   })
-  console.log(this.state.selectedFile);
-  console.log(this.props.type);
 } 
-onClickHandler = (e) => {
-    e.preventDefault();
+onClickHandler = () => {
     const data = new FormData() 
     data.append('file', this.state.selectedFile)
     data.append('type', this.props.props.type)
-    axios.post("http://localhost:5000/file/upload", data, {})
+    data.append('price', this.props.price)
+    axios.post("http://localhost:5000/file/upload", data, { headers: authHeader() })
       .then(res => { // then print response status
         console.log(res.statusText)
         

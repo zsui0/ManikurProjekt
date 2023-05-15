@@ -3,16 +3,17 @@ const router = express.Router()
 const jwt = require('jsonwebtoken')
 const User = require('../models/user')
 const multer = require('multer')
-//const uploads = multer({ dest: "uploads/" });
+const Jewelry = require('../models/jewelry')
+const Gallery = require('../models/gallery')
 
 var filepath = "";
 
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
-    cb(null, '../client/public')
+    cb(null, filepath)
   },
   filename: function (req, file, cb) {
-    cb(null, Date.now() + '-' +file.originalname )
+    cb(null, file.originalname )
   }
   })
 
@@ -20,12 +21,51 @@ var storage = multer.diskStorage({
   
 
 
-router.post('/upload', upload.single('file'), function(req, res) {
-  console.log(req.body.type)
-
+router.post('/upload', setFilePath, authenticateToken, upload.single('file'), async function(req, res) {
+  if(req.user.role == "admin"){
+  if(req.file){
+    if(req.file.mimetype == "image/jpeg" || req.file.mimetype == "image/png"){
+      if(req.body.type == "gallery"){
+        try{        
+          const gallery = new Gallery({
+            image: req.file.originalname
+          })
+          await gallery.save()
+          return res.status(200).json({message: "Munka sikeresen felvéve"})
+        } catch(error) {
+          return res.status(500).json({message: error.message})
+        }
+      } else {
+        try{        
+          const jewelry = new Jewelry({
+            image: req.file.originalname,
+            price: req.body.price,
+            type: req.body.type
+          })
+          await jewelry.save()
+          return res.status(200).json({message: "Ékszer sikeresen felvéve"})
+        } catch(error) {
+          return res.status(500).json({message: error.message})
+        }
+      }
+    }
+  } else {
+    return res.status(400).json({message: "Nem adtál meg fájlt!"})
+  }
   return res.status(200).send({message: "done"});
+  } else return res.status(400).send({message: "Access Denied!"});
 });
 
+
+function setFilePath(req, res, next) {
+    if(req.body.type == "gallery"){
+      filepath = "../client/src/icons/gallery"
+    } else {
+      filepath = "../client/src/icons/ekszerek"
+    }
+    next()
+
+}
 
 function authenticateToken(req, res, next) { // middleware
   const authHeader = req.headers['authorization']

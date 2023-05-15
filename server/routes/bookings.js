@@ -29,6 +29,22 @@ router.get('/', authenticateToken, async (req, res) => {
   }
 })
 
+router.delete('/', authenticateToken, async (req, res) => {
+  try{
+    await Booking.findByIdAndDelete(req.body.bookingID, function (err,docs){
+      if(err){
+        console.log(err)
+      }
+      else{
+        console.log("Deleted : ", docs);
+      }
+    });
+    res.status(200).json({message: "Foglalás sikeresen törölve!"})
+  } catch (error) {
+    res.status(500).json({message: error.message})
+  }
+})
+
 
 function authenticateToken(req, res, next) { // middleware
   const authHeader = req.headers['authorization']
