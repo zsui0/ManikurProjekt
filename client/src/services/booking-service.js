@@ -22,7 +22,7 @@ const getEvents = () => {
     })
 }
 
-const removeEvents = () => {
+const removeEvents = (bookingID) => {
   return axios
     .delete(API_URL+"/booking",{bookingID},{ headers: authHeader() })
     .then(response => {
