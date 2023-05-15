@@ -22,7 +22,7 @@ const getEvents = () => {
 }
 const changeEvent = (id, startDate, endDate) => {
   return axios
-    .post(API_URL+"/booking",{id, startDate, endDate},{ headers: authHeader() })
+    .patch(API_URL+"/booking",{id, startDate, endDate},{ headers: authHeader() })
     .then((response) => {
       return true
     });

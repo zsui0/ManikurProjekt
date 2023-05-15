@@ -29,19 +29,16 @@ router.get('/', authenticateToken, async (req, res) => {
     res.status(500).json({message: error.message})
   }
 })
-/*
-router.patch('/:id', getUser, async (req, res) => {  // patch update just the new data, put update everything
-  if(req.body.lastName != null) {
-    res.user.lastName = req.body.lastName
-  }
-  //....
+
+router.patch('/', authenticateToken, async (req, res) => {  // patch update just the new data, put update everything
   try {
-    const updatedUser = await res.user.save()
-    res.json(updatedUser)
+    if(req.body.id != null) {
+      await Booking.findByIdAndUpdate(req.body.id, {start: req.body.startDate, end: req.body.endDate})
+    }
   } catch (error) {
     res.status(400).json({message: error.message})
   }
-})*/
+})
 
 function authenticateToken(req, res, next) { // middleware
   const authHeader = req.headers['authorization']
