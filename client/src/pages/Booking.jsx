@@ -9,6 +9,7 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import "../styles/booking.css";
 import BookingServices from "./BookingServices";
 import BookingService from '../services/booking-service';
+//import { events } from "../../../server/models/user";
 
 
 // Setup the localizer by providing the moment (or globalize, or Luxon) Object
@@ -16,6 +17,8 @@ import BookingService from '../services/booking-service';
 const localizer = momentLocalizer(moment);
 const DnDCalendar = withDragAndDrop(Calendar);
 const ma = moment();
+const user = JSON.parse(localStorage.getItem("user"));
+
 
  class Booking extends Component {
   constructor(props) {
@@ -28,23 +31,28 @@ const ma = moment();
   getAllBookings = async () => {
     const data = await BookingService.getEvents();
     var keys = Object.keys(data);
-    for (var i = 0; i < keys.length; i++) {
+    //data.forEach
+    for (var i = 0; i < keys.length; i++) { //Átformázás
       data[i].start = new Date(data[i].start.substring(0,data[i].start.length-2))
       data[i].end = new Date(data[i].end.substring(0,data[i].end.length-2))
-      data[i].id = i;
+      //data[i].id = data[i]._id;
+      //data[i].user = data[i].userId;
 
     }
     if (data != null){
-      this.state.events = data;
+      this.setState((state) =>{
+        state.events = data
+      });
       console.log(this.state.events);
     }
   }
+
   componentDidMount() {    
-    this.getAllBookings();  
-  }  
+    this.getAllBookings(); 
+  } 
 
   onEventResize = (data) => {
-    /* Ha szeretnénk, goyg csinájon valamit resize közben
+    /* Ha szeretnénk, hoyg csinájon valamit resize közben
     const { start, end } = data;
 
     this.setState((state) => {
@@ -54,35 +62,74 @@ const ma = moment();
     });*/
   };
 
+  doesItFit = (start, end) =>{
+    console.log(start)
+    console.log(end)
+    if(start.getHours()>=8)
+    { 
+      if(end.getHours()< 16 || (end.getHours() === 16 && end.getMinutes() ===0) )
+      {
+        
+        this.state.events.forEach(event =>{
+          if((moment(event.start) < moment(start) && moment(event.end) > moment(start)) ||(moment(event.start) < moment(end) && moment(event.end) > moment(end)))
+          {
+            return false;
+          }
+        });
+        return true;
+      }
+    }
+    return false;
+  }
+
   onEventDrop = (data) => {
     console.log(data);
     const { start, end} = data;
+      //changeEvent(data.event._id, data.event.start, data.event.end)
 
     this.setState((state) => {
-      state.events[data.event.id].start = start;
-      state.events[data.event.id].end = end;
+      state.events[1].start = start;
+      state.events[1].end = end;
       return { events: [...state.events] };
     });
   };
 
-  handleTitle = (title) =>{
-    this.setState({act_title: title})
+  handleTitle = (title, length) =>{
+    this.setState({
+      act_title: title,
+      act_length: length
+    })
   }
 
-  onDropFromOutside = (data) => {
+  onDropFromOutside = async (data) => {
     console.log(data);
-    this.setState((state) => {
-      state.events[state.events.length]= {
-        start: data.start,
-        end:  moment(data.start).add(1,"hours").toDate(),
-        title: this.state.act_title,
-        id: state.events.length
-      };
-      return { events: [...state.events] };
-    });
+    const end = moment(data.start).add(this.state.act_length,"minutes").toDate();
+    if(this.doesItFit(data.start, end))
+    {
+      await BookingService.addEvent(this.state.act_title, moment(data.start).add(2,"hours"), moment(end).add(2,"hours"), this.state.act_length)
+      .then(
+        (error) =>{
+            console.log(error);
+        }  
+        )
+      //window.location.reload();
+      /*
+      this.setState((state) => {
+        state.events[state.events.length]= {
+          start: data.start,
+          end:  end,
+          title: this.state.act_title,
+          id: state.events.length
+        };
+        return { events: [...state.events] };
+      });*/
+    }
+    else{
+      alert("A kiválasztott időpont nem lehetséges!")
+    }
   }
 
-  sendEvents = async () =>{
+  sendEvent = async () =>{
     try {
     this.state.events.forEach(async event =>
       await BookingService.addEvent(event.title, event.start, event.end)
@@ -100,7 +147,7 @@ const ma = moment();
 
 
   render() {
-    return (
+return(
       <div className="App">
         <div className="allbooking">
           <div className="calendar">
@@ -113,7 +160,7 @@ const ma = moment();
             onEventResize={this.onEventResize}
             onDropFromOutside={this.onDropFromOutside}
             views={['week','day']}
-            step={15}
+            step={10}
             min={
               new Date(
                 ma.get("year"), 
@@ -127,7 +174,7 @@ const ma = moment();
                 ma.get("year"), 
                 ma.get("month"), 
                 ma.get("date"), 
-                20
+                16
               )
             }
           />
@@ -138,9 +185,8 @@ const ma = moment();
             </div>
         </div>
       </div>
-    );
 
+);
   }
 }
-
 export default Booking;

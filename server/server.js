@@ -35,9 +35,11 @@ app.set('view engine', 'ejs') // for rendering html (ejs or pug), download exten
 
 const userRouter = require('./routes/users')
 const bookingRouter = require('./routes/bookings')
+const serviceRouter = require('./routes/services')
 
 app.use('/users',userRouter)
 app.use('/booking',bookingRouter)
+app.use('/service',serviceRouter)
 
 function logger(req, res, next){ // middleware logger
   console.log(req.originalUrl)

@@ -17,6 +17,10 @@ const bookingSchema = new mongoose.Schema({
     type: Date,
     required: true 
   },
+  length: {
+    type: Date,
+    required: false
+  }
 })
 
 module.exports = mongoose.model('Booking', bookingSchema)
