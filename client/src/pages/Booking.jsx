@@ -105,16 +105,23 @@ const user = JSON.parse(localStorage.getItem("user"));
 
   onEventDrop = async (data) => {
     console.log(data);
-    const { start, end} = data;    
-    if(this.doesItFit(data.start, data.end))
+    const { start, end} = data;
+    if(data.event.userId === user._id) 
     {
-      await BookingService.changeEvent(data.event._id, moment(data.start).add(2,"hours"), moment(data.end).add(2,"hours"))
-      .then(
-        (error) =>{
-            console.log(error);
-        }  
-        )
+      if(this.doesItFit(data.start, data.end))
+      {
+        await BookingService.changeEvent(data.event._id, moment(data.start).add(2,"hours"), moment(data.end).add(2,"hours"))
+        .then(
+          (error) =>{
+              console.log(error);
+          }  
+          )
+      }
     }
+    else{
+      alert("A kiválasztott időpont nem a tiéd!")
+    } 
+    
   };
 
   handleTitle = (title, length) =>{
