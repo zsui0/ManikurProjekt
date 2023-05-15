@@ -22,7 +22,7 @@ router.post('/', authenticateToken,  async (req, res) => {
 
 router.get('/', authenticateToken, async (req, res) => {
   try{
-    const bookings = await Booking.find().lean().select('-_id title start end')
+    const bookings = await Booking.find().lean().select('-_id title start end userId')
     res.status(200).json({result: bookings})
   } catch (error) {
     res.status(500).json({message: error.message})
