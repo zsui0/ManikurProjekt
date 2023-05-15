@@ -74,7 +74,7 @@ const logOut = () => {
                     <DropdownToggle className="font-weight-bold" style={{color: '#FE1AAC'}} nav caret><img src={require('../icons/user.png')} alt="avatar" className="img-fluid rounded-circle" style={{ width: 40 }} /></DropdownToggle>
                     <DropdownMenu>
                       <DropdownItem href="/profile">Adataim megtekintése</DropdownItem>
-                      <DropdownItem href="/foglalasok">Foglalásaim megtekintése</DropdownItem>
+                      <DropdownItem href="/mybookings">Foglalásaim megtekintése</DropdownItem>
                     </DropdownMenu>
                     </UncontrolledDropdown>
                   

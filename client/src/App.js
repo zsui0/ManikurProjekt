@@ -17,6 +17,8 @@ import Gyuru from './pages/Gyuru';
 import Nyaklanc from './pages/Nyaklanc';
 import Egyeb from './pages/Egyeb';
 import Gallery from './pages/Gallery';
+import MyBookings from './pages/MyBookings';
+
 const App = () => {
 
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -42,6 +44,7 @@ return (
             <Routes>   
               <Route path="/" element={<Home currentUser={currentUser} />} />
               <Route path="profile" element={<Profile currentUser={currentUser} />}/>
+              <Route path="mybookings" element={<MyBookings currentUser={currentUser} />}/>
               <Route path="about" element={<About />} />
               <Route path="booking" element={<><Booking currentUser={currentUser}/><BookingForm/></>} />
               <Route path="signup" element={<Signup />} />
