@@ -71,7 +71,7 @@ const user = JSON.parse(localStorage.getItem("user"));
     var day=start.getDate()    
     if(start.getHours()>=8)
     { 
-      if(end.getHours()< 16 || (end.getHours() === 16 && end.getMinutes() ===0) )
+      if(end.getHours()< 16 || (end.getHours() === 16 && end.getMinutes() === 0) )
       {
         
         this.state.events.forEach(event =>{
@@ -103,16 +103,24 @@ const user = JSON.parse(localStorage.getItem("user"));
     return false;
   }
 
-  onEventDrop = (data) => {
+  onEventDrop = async (data) => {
     console.log(data);
     const { start, end} = data;
-      //changeEvent(data.event._id, data.event.start, data.event.end)
-
+    if(true) //this.doesItFit(data.start, data.end)
+    {
+      await BookingService.changeEvent(data.event._id, moment(data.start).add(2,"hours"), moment(data.end).add(2,"hours"))
+      .then(
+        (error) =>{
+            console.log(error);
+        }  
+        )
+    }
+    /*
     this.setState((state) => {
       state.events[1].start = start;
       state.events[1].end = end;
       return { events: [...state.events] };
-    });
+    });*/
   };
 
   handleTitle = (title, length) =>{
