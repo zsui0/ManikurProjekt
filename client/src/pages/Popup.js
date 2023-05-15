@@ -6,9 +6,10 @@ import GalleryJewelryService from "../services/gallery-jewelry-service";
 function Popup(props) {
 
     const [typeOut, setTypeOut] = useState({})
-    const [priceOut, setPriceOut] = useState({});    
+    const [priceOut, setPriceOut] = useState({});
+    const [fileNameOut,setFileNameOut] = useState({});
 
-/*     const AddJewelry = async () => {
+    /*const AddJewelry = async () => {
         console.log(fileNameOut+" : "+priceOut+" : "+typeOut)
         try{
             await GalleryJewelryService.AddJewelry(fileNameOut, priceOut, typeOut)

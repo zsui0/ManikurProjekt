@@ -16,12 +16,13 @@ onChangeHandler=event=>{
      loaded: 0
   })
   console.log(this.state.selectedFile);
+  console.log(this.props.type);
 } 
 onClickHandler = (e) => {
     e.preventDefault();
     const data = new FormData() 
     data.append('file', this.state.selectedFile)
-    data.append('type', "galleria")
+    data.append('type', this.props.props.type)
     axios.post("http://localhost:5000/file/upload", data, {})
       .then(res => { // then print response status
         console.log(res.statusText)
