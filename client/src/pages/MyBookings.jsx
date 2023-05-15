@@ -6,7 +6,6 @@ import DataGrid  from 'react-data-grid';
 import BookingService from '../services/booking-service';  
 
 const MyBookings = (user) => {
-  const [events, setEvents] = useState([]);
   const [rowData,setRowData] = useState([]);
   const getAllBookings = async () => {
     const data = await BookingService.getEvents();
@@ -17,14 +16,15 @@ const MyBookings = (user) => {
       data[i].end = new Date(data[i].end.substring(0,data[i].end.length-2)).toString();
 
     }
-    if (data != null){
-      setEvents(data)
-    }
+    
     let rows = [];
+    
     for(var i=0;i<data.length;i++){
-      if(user.currentUser.userId = data[i].userId){
+      if(user.currentUser.userid == data[i].userId){
       rows.push({title: data[i].title,start: data[i].start.substring(4,21), end: data[i].end.substring(4,21),button: <Button >Törlés</Button>});
+      console.log(typeof(data[i].userId)); 
       }
+      console.log(typeof(user.currentUser.userid));
       setRowData(rows);
     }
   }
@@ -33,7 +33,6 @@ const MyBookings = (user) => {
     getAllBookings();
   }, []); 
 
-  console.log(events);
 
   const columns = [
     { key: 'title', name: 'Típus' },
