@@ -13,45 +13,39 @@ const MyBookings = (user) => {
 
     var keys = Object.keys(data);
     for (var i = 0; i < keys.length; i++) {
-      data[i].start = new Date(data[i].start.substring(0,data[i].start.length-2))
-      data[i].end = new Date(data[i].end.substring(0,data[i].end.length-2))
+      data[i].start = new Date(data[i].start.substring(0,data[i].start.length-2)).toString();
+      data[i].end = new Date(data[i].end.substring(0,data[i].end.length-2)).toString();
 
     }
     if (data != null){
       setEvents(data)
     }
-  }
-  function getRowData(){
-    let adat = [];
-    console.log();
-    for(var i=0;i<events.length;i++){
-      adat.push({title: events[i]["title"],start: events[i]["start"], end: events[i]["end"],button: <Button>Törlés</Button>});
+    let rows = [];
+    for(var i=0;i<data.length;i++){
+      rows.push({title: data[i].title,start: data[i].start.substring(4).concat(" ",data[i].start.substring(10,14)), end: "2",button: <Button>Törlés</Button>});
+      console.log(data[i].userId);
+      setRowData(rows);
     }
-    console.log(events);
-    console.log(adat);
-    setRowData(adat);
   }
-  
+
   useEffect(() => {
     getAllBookings();
   }, []); 
-  useEffect(() => {
-    getRowData();
-  }, []); 
+
   console.log(events);
 
   const columns = [
     { key: 'title', name: 'Title' },
     { key: 'start', name: 'Start' },
     { key: 'end', name: 'End' },
-    { key: 'button', name: ''} 
+    { key: 'button', name: 'Törlés'} 
   ];
   
-  const rows = [
+/*   const rows = [
     {title: 'Example', start: new Date().getTime(), end: "2030.32.22", button: <Button>Törlés</Button> },
     {title: 'Demo', start: new Date().getTime(), end: "2030.32.22"  }
-  ];
-
+  ]; */
+  
   return(
     <div style={{"width": "60%", "margin": "auto"}} >
       <DataGrid columns={columns} rows={rowData} />
