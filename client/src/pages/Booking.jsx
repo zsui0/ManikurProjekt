@@ -52,7 +52,7 @@ const user = JSON.parse(localStorage.getItem("user"));
   } 
 
   onEventResize = (data) => {
-    /* Ha szeretnénk, hoyg csinájon valamit resize közben
+    /* Ha szeretnénk, hogy csinájon valamit resize közben
     const { start, end } = data;
 
     this.setState((state) => {

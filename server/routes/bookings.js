@@ -29,7 +29,7 @@ router.get('/', authenticateToken, async (req, res) => {
     res.status(500).json({message: error.message})
   }
 })
-
+/*
 router.patch('/:id', getUser, async (req, res) => {  // patch update just the new data, put update everything
   if(req.body.lastName != null) {
     res.user.lastName = req.body.lastName
@@ -41,7 +41,7 @@ router.patch('/:id', getUser, async (req, res) => {  // patch update just the ne
   } catch (error) {
     res.status(400).json({message: error.message})
   }
-})
+})*/
 
 function authenticateToken(req, res, next) { // middleware
   const authHeader = req.headers['authorization']
