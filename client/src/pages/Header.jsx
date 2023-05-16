@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import logo from '../icons/logos.svg';
+import logo from '../icons/belaNails.jpeg';
 import AuthService from '../services/auth.service';
 import {
   Container, Row, Col, Form, Input, Button, Navbar, Nav,
@@ -44,6 +44,10 @@ const logOut = () => {
                   </UncontrolledDropdown>
 
                   <NavItem className="d-flex align-items-center">
+                    <NavLink className="font-weight-bold" href="/gallery">Galléria</NavLink>
+                  </NavItem>
+
+                  <NavItem className="d-flex align-items-center">
                     <NavLink className="font-weight-bold" href="/about">Rólam</NavLink>
                   </NavItem>
                   
@@ -51,7 +55,7 @@ const logOut = () => {
               </Col>
               
               <Col className="d-flex justify-content-xs-start justify-content-lg-center">
-                <NavbarBrand className="d-inline-block p-0" href="/" style={{ width: 80 }}>
+                <NavbarBrand className="d-inline-block p-0" href="/" style={{ width: 150 }}>
                   <img src={logo} alt="logo" className="position-relative img-fluid" />
                 </NavbarBrand>
               </Col>
@@ -60,17 +64,20 @@ const logOut = () => {
               <Col className="d-none d-lg-flex justify-content-end">
                 {user.currentUser === undefined ? (
                   <Nav>
-                    <NavLink className="font-weight-bold" href="/signup">Regisztráció</NavLink>
-                    <NavLink className="font-weight-bold" href="/login">Bejelentkezés</NavLink>
+                    <NavLink className="font-weight-bold" href="/signup" style={{color: '#FE1AAC'}} >Regisztráció</NavLink>
+                    <NavLink className="font-weight-bold" href="/login" style={{color: '#FE1AAC'}}>Bejelentkezés</NavLink>
                   </Nav>
                 ) : (
                   <Nav>
-                    <NavLink className="font-weight-bold d-flex align-items-center" href="/login" onClick={logOut}>Kijelentkezés</NavLink>
-                    <NavItem className="d-flex align-items-center">
-                      <NavLink className="font-weight-bold" href="/profile">
-                      <img src={require('../icons/user.png')} alt="avatar" className="img-fluid rounded-circle" style={{ width: 40 }} />
-                      </NavLink>
-                  </NavItem>
+                    <NavLink className="font-weight-bold d-flex align-items-center" href="/login" style={{color: '#FE1AAC'}} onClick={logOut}>Kijelentkezés</NavLink>
+                    <UncontrolledDropdown className="d-flex align-items-center "  direction='down'>
+                    <DropdownToggle className="font-weight-bold" style={{color: '#FE1AAC'}} nav caret><img src={require('../icons/user.png')} alt="avatar" className="img-fluid rounded-circle" style={{ width: 40 }} /></DropdownToggle>
+                    <DropdownMenu>
+                      <DropdownItem href="/profile">Adataim megtekintése</DropdownItem>
+                      <DropdownItem href="/mybookings">Foglalásaim megtekintése</DropdownItem>
+                    </DropdownMenu>
+                    </UncontrolledDropdown>
+                  
                 </Nav>
                 )}
 

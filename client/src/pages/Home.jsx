@@ -3,24 +3,12 @@ import Carousel from 'react-bootstrap/Carousel';
 import '../styles/carousel.scss'
 const Home = (user) => {
   return (
-    /*<div>
-      <h1>Üdvözlünk a főoldalon!</h1>
-      {user.currentUser === undefined ? (
-        <h1>Nem vagy bejelentkezve</h1>
-      ) : (
-        
-        <div>
-          <h1>Bevagy jelentkezve!</h1>
-        </div>
-      )}
-    </div>*/
-
+    <>
     <Carousel controls={false}>
     <Carousel.Item>
       <img
         className="d-block w-100"
         src={require('../icons/carousel/elso.jpg')}
-        alt="First slide"
       />
       <Carousel.Caption>
         <div class ="carouselText">
@@ -33,7 +21,6 @@ const Home = (user) => {
       <img
         className="d-block w-100"
         src={require('../icons/carousel/masodik.jpg')}
-        alt="Second slide"
       />
 
       <Carousel.Caption>
@@ -45,7 +32,6 @@ const Home = (user) => {
       <img
         className="d-block w-100"
         src={require('../icons/carousel/harmadik.jpg')}
-        alt="Third slide"
       />
 
       <Carousel.Caption>
@@ -54,8 +40,11 @@ const Home = (user) => {
       </Carousel.Caption>
     </Carousel.Item>
   </Carousel>
-
-
+  
+  {/*<div class="galleryButtonDiv">
+    <a href="/gallery"><img class="galleryButton" src={require('../icons/gallery.png')} alt="galéria" style={{width: 300}}/></a>
+  </div>*/}
+  </>
   );
 };
   

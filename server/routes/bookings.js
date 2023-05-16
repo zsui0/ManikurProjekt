@@ -30,6 +30,17 @@ router.get('/', authenticateToken, async (req, res) => {
   }
 })
 
+
+router.put('/remove', authenticateToken,  async (req, res) => {
+  try{
+    await Booking.deleteOne({ _id: req.body.bookingID });
+    res.status(200).json({message: "Foglalás sikeresen törölve!"})
+  } catch (error) {
+    res.status(500).json({message: error.message})
+  }
+})
+
+
 router.patch('/', authenticateToken, async (req, res) => {  // patch update just the new data, put update everything
   try {
     if(req.body.id != null) {
@@ -39,6 +50,7 @@ router.patch('/', authenticateToken, async (req, res) => {  // patch update just
     res.status(400).json({message: error.message})
   }
 })
+
 
 function authenticateToken(req, res, next) { // middleware
   const authHeader = req.headers['authorization']

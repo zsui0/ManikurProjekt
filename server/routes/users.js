@@ -19,19 +19,6 @@ router.get('/', async (req, res) => {
 router.get('/:id', getUser, (req, res) => {
   res.json(res.user)
 })
-//Updating one
-router.patch('/:id', getUser, async (req, res) => {  // patch update just the new data, put update everything
-  if(req.body.lastName != null) {
-    res.user.lastName = req.body.lastName
-  }
-  //....
-  try {
-    const updatedUser = await res.user.save()
-    res.json(updatedUser)
-  } catch (error) {
-    res.status(400).json({message: error.message})
-  }
-})
 //Deleting one
 router.delete('/:id', getUser, async (req, res) => { 
   try {
@@ -42,21 +29,62 @@ router.delete('/:id', getUser, async (req, res) => {
   }
 })
 
+router.patch('/password', authenticateToken, async (req, res) => {
+  try{
+    if (req.body.newPass == ""){
+      return res.status(400).json({message: "New password input is empty!"})
+    } else if (await bcrypt.compare(req.body.newPass, req.user.password)){
+      return res.status(400).json({message: "The new and old password is the same!"})
+    } else {
+      let changeUser = await User.findOne({email: req.user.email})
+      const hashedPassword = await bcrypt.hash(req.body.newPass, 10)
+      changeUser.password = hashedPassword
+      await changeUser.save()
+      return res.status(204).json({message: "Sikeres jelszó változtatás"})
+    }
+  } catch (error) {
+    return res.status(500).json({message: error.message})
+  }
+})
+
+router.patch('/profiledata', authenticateToken, async (req,res) => {
+  try{
+    let changeUser = await User.findOne({email: req.user.email})
+    if(req.body.lastname != ""){
+      changeUser.lastName = req.body.lastname
+    }  
+    if(req.body.firstname != ""){
+      changeUser.firstName = req.body.firstname
+    } 
+    if(req.body.username != ""){
+      changeUser.userName = req.body.username
+    }  
+    if(req.body.email != ""){
+      changeUser.email = req.body.email
+    } 
+    await changeUser.save()
+    // res.status(200).json({message: "Logged In", name: user.userName, firstName: user.firstName, lastName: user.lastName, email: user.email, role: user.role, accessToken: accessToken, refreshToken: refreshToken})
+    return res.status(204).json({message: "Sikeres adat változtatás"})
+  } catch (error) {
+    return res.status(500).json({message: error.message})
+  }
+})
+
 router.post('/register', async (req, res) => {  
   try {
     const checkUserByEmail = await User.findOne({email: req.body.email})
-    const checkUserByName = await User.findOne({userName: req.body.userName})
+    const checkUserByName = await User.findOne({userName: req.body.username})
     if(checkUserByEmail != null) {
       res.status(400).json({message: `User already exists with '${req.body.email}' email`})
     } else if(checkUserByName != null) {
-      res.status(400).json({message: `User already exists with '${req.body.userName}' name`})
+      res.status(400).json({message: `User already exists with '${req.body.username}' name`})
     }
 
     const hashedPassword = await bcrypt.hash(req.body.password, 10) // 10 -> salt
     const user = new User({
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      userName: req.body.userName,
+      firstName: req.body.first,
+      lastName: req.body.last,
+      userName: req.body.username,
       email: req.body.email,
       password: hashedPassword
     })

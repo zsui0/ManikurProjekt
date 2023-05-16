@@ -4,6 +4,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 const express = require('express')
 const mongoose = require('mongoose')
+const multer = require('multer')
 const cors = require('cors')
 const app = express()
 
@@ -35,10 +36,16 @@ app.set('view engine', 'ejs') // for rendering html (ejs or pug), download exten
 
 const userRouter = require('./routes/users')
 const bookingRouter = require('./routes/bookings')
+const galleryRouter = require('./routes/gallery')
+const jewelryRouter = require('./routes/jewelry')
+const fileRouter = require('./routes/file-manager')
 const serviceRouter = require('./routes/services')
 
 app.use('/users',userRouter)
 app.use('/booking',bookingRouter)
+app.use('/gallery',galleryRouter)
+app.use('/jewelry',jewelryRouter)
+app.use('/file',fileRouter)
 app.use('/service',serviceRouter)
 
 function logger(req, res, next){ // middleware logger

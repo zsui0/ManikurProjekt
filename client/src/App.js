@@ -15,7 +15,9 @@ import Login from './pages/Login';
 import BookingForm from './pages/BookingForm';
 import Gyuru from './pages/Gyuru';
 import Nyaklanc from './pages/Nyaklanc';
-
+import Egyeb from './pages/Egyeb';
+import Gallery from './pages/Gallery';
+import MyBookings from './pages/MyBookings';
 
 const App = () => {
 
@@ -26,9 +28,11 @@ const App = () => {
     const user = AuthService.getCurrentUser();
 
     if (user) {
-      setCurrentUser(user);
+      if(currentUser === undefined){
+        setCurrentUser(user);
+      }
     }
-  }, []);
+  }, [currentUser]);
 
 return (
     <BrowserRouter>
@@ -40,13 +44,16 @@ return (
             <Routes>   
               <Route path="/" element={<Home currentUser={currentUser} />} />
               <Route path="profile" element={<Profile currentUser={currentUser} />}/>
+              <Route path="mybookings" element={<MyBookings currentUser={currentUser} />}/>
               <Route path="about" element={<About />} />
               <Route path="booking" element={<><Booking currentUser={currentUser}/></>} />
               <Route path="signup" element={<Signup />} />
               <Route path="login" element={<Login />} />
               <Route path="*" element={<NotFound />} />
-              <Route path="gyuru" element={<Gyuru />} /> 
-              <Route path="nyaklanc" element={<Nyaklanc />} />
+              <Route path="gyuru" element={<Gyuru currentUser={currentUser}/>} /> 
+              <Route path="nyaklanc" element={<Nyaklanc currentUser={currentUser}/>} />
+              <Route path="egyeb" element={<Egyeb currentUser={currentUser}/>} />
+              <Route path="gallery" element={<Gallery currentUser={currentUser}/>} />
             </Routes>
           </Container>
         </main>

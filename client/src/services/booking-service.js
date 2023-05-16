@@ -28,10 +28,20 @@ const changeEvent = (id, startDate, endDate) => {
     });
 }
 
+const removeEvents = (bookingID) => {
+  console.log("Service event:"+bookingID)
+  return axios
+    .put(API_URL+"/booking/remove",{ bookingID },{ headers: authHeader() })
+    .then(response => {
+      //console.log(response.data.result)
+      return response.data.message;
+    })
+}
 
 const BookingService = {
   addEvent,
   getEvents,
+  removeEvents,
   changeEvent
 }
 
