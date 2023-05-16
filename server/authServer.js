@@ -41,7 +41,7 @@ app.post('/login', async (req, res) => {
       const accessToken = generateAccessToken(user)
       const refreshToken = jwt.sign(user.toJSON(), process.env.REFRESH_TOKEN_SECRET)
       refreshTokens.push(refreshToken)
-      res.status(200).json({message: "Logged In", userid: user.userid, name: user.userName, firstName: user.firstName, lastName: user.lastName, email: user.email, role: user.role, accessToken: accessToken, refreshToken: refreshToken})
+      res.status(200).json({message: "Logged In", userid: user._id, name: user.userName, firstName: user.firstName, lastName: user.lastName, email: user.email, role: user.role, accessToken: accessToken, refreshToken: refreshToken})
     } else {
       res.status(406).json({message: "Not Allowed"})
     }
