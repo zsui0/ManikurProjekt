@@ -39,12 +39,14 @@ const bookingRouter = require('./routes/bookings')
 const galleryRouter = require('./routes/gallery')
 const jewelryRouter = require('./routes/jewelry')
 const fileRouter = require('./routes/file-manager')
+const serviceRouter = require('./routes/services')
 
 app.use('/users',userRouter)
 app.use('/booking',bookingRouter)
 app.use('/gallery',galleryRouter)
 app.use('/jewelry',jewelryRouter)
 app.use('/file',fileRouter)
+app.use('/service',serviceRouter)
 
 function logger(req, res, next){ // middleware logger
   console.log(req.originalUrl)

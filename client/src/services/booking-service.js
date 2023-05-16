@@ -4,10 +4,9 @@ import moment from 'moment'
 
 const API_URL = "http://localhost:5000"
 
-const addEvent = (title, startDate) => {
-  let endDate = moment(startDate).add(60, 'm').toDate();
+const addEvent = (title, startDate, endDate, length) => {
   return axios
-    .post(API_URL+"/booking",{title, startDate, endDate},{ headers: authHeader() })
+    .post(API_URL+"/booking",{title, startDate, endDate, length},{ headers: authHeader() })
     .then((response) => {
       return true
     });
@@ -20,6 +19,13 @@ const getEvents = () => {
       //console.log(response.data.result)
       return response.data.result;
     })
+}
+const changeEvent = (id, startDate, endDate) => {
+  return axios
+    .patch(API_URL+"/booking",{id, startDate, endDate},{ headers: authHeader() })
+    .then((response) => {
+      return true
+    });
 }
 
 const removeEvents = (bookingID) => {
@@ -35,7 +41,8 @@ const removeEvents = (bookingID) => {
 const BookingService = {
   addEvent,
   getEvents,
-  removeEvents
+  removeEvents,
+  changeEvent
 }
 
 export default BookingService;

@@ -46,7 +46,7 @@ return (
               <Route path="profile" element={<Profile currentUser={currentUser} />}/>
               <Route path="mybookings" element={<MyBookings currentUser={currentUser} />}/>
               <Route path="about" element={<About />} />
-              <Route path="booking" element={<><Booking currentUser={currentUser}/><BookingForm/></>} />
+              <Route path="booking" element={<><Booking currentUser={currentUser}/></>} />
               <Route path="signup" element={<Signup />} />
               <Route path="login" element={<Login />} />
               <Route path="*" element={<NotFound />} />
