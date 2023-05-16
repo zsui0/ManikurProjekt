@@ -106,7 +106,7 @@ const user = JSON.parse(localStorage.getItem("user"));
   onEventDrop = async (data) => {
     console.log(data);
     const { start, end} = data;
-    if(data.event.userId === user._id) 
+    if(data.event.userId === user.userid) 
     {
       if(this.doesItFit(data.start, data.end))
       {
@@ -178,7 +178,7 @@ return(
             eventPropGetter={(event) => {
               let backgroundColor = 'lightgrey';
               let color = 'black';
-              if(event.userId === user._id)
+              if(event.userId === user.userid)
               {
                 backgroundColor = 'pink';
                 color = 'black';

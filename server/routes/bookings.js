@@ -7,7 +7,7 @@ const User = require('../models/user')
 router.post('/', authenticateToken,  async (req, res) => {
   try{
     const appointment = new Booking({
-      userId: req.user._id,
+      userId: req.user.userid,
       title: req.body.title,
       start: req.body.startDate,
       end: req.body.endDate,
