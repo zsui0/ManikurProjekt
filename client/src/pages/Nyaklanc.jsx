@@ -47,7 +47,7 @@ const Nyaklanc=(user)=>{
     const renderCard=(card, index) =>{
         return(
             <Card style={{ width: '18rem'}} key={index} className="card">
-                <Card.Img variant="top" src={require("../icons/ekszerek/"+card.image)}/>
+                <Card.Img variant="top" src={require("../icons/kepek/"+card.image)}/>
                 <Card.Body>
                     <Card.Text>Ár: {card.price} Ft</Card.Text>
                 </Card.Body>
