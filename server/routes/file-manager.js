@@ -10,7 +10,7 @@ var filepath = "";
 
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
-    cb(null, filepath)
+    cb(null, "../client/src/icons/kepek")
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname )
@@ -21,7 +21,7 @@ var storage = multer.diskStorage({
   
 
 
-router.post('/upload', setFilePath, authenticateToken, upload.single('file'), async function(req, res) {
+router.post('/upload', authenticateToken, upload.single('file'),  async function(req, res) {
   if(req.user.role == "admin"){
   if(req.file){
     if(req.file.mimetype == "image/jpeg" || req.file.mimetype == "image/png"){
@@ -57,15 +57,6 @@ router.post('/upload', setFilePath, authenticateToken, upload.single('file'), as
 });
 
 
-function setFilePath(req, res, next) {
-    if(req.body.type == "gallery"){
-      filepath = "../client/src/icons/gallery"
-    } else {
-      filepath = "../client/src/icons/ekszerek"
-    }
-    next()
-
-}
 
 function authenticateToken(req, res, next) { // middleware
   const authHeader = req.headers['authorization']

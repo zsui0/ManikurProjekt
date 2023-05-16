@@ -48,7 +48,7 @@ const Gallery=(user)=>{
     const renderCard=(card, index) =>{
         return(
             <Card style={{ width: '18rem'}} key={index} className="card">
-                <Card.Img variant="top" src={require("../icons/gallery/"+card.image)} />                
+                <Card.Img variant="top" src={require("../icons/kepek/"+card.image)} />                
             </Card>
         );
     };

@@ -5,6 +5,7 @@ if (process.env.NODE_ENV !== 'production') {
 const express = require('express')
 const mongoose = require('mongoose')
 const multer = require('multer')
+const bodyparser = require('body-parser')
 const cors = require('cors')
 const app = express()
 
@@ -17,8 +18,10 @@ const app = express()
 const db = connect();
 
 app.use(express.static("public")) // automatically use public folder files for static page rendering, you can access/open files in http line : 'apiHttp'/test/test.html
-app.use(express.urlencoded({ extended: true })) // allow access information coming from Forms
-app.use(express.json()) // same as urlencoded just with json
+//app.use(express.urlencoded({ extended: true })) // allow access information coming from Forms
+//app.use(express.json()) // same as urlencoded just with json
+app.use(bodyparser.json()); // for parsing application/json
+app.use(bodyparser.urlencoded({ extended: true }));
 app.use(cors())
 
 app.set('view engine', 'ejs') // for rendering html (ejs or pug), download extension ejs language support
