@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import withDragAndDrop from "react-big-calendar/lib/addons/dragAndDrop";
@@ -27,7 +27,7 @@ const user = JSON.parse(localStorage.getItem("user"));
       events: [],
     };
   }
-
+  
   getAllBookings = async () => {
     const data = await BookingService.getEvents();
     var keys = Object.keys(data);
@@ -116,6 +116,7 @@ const user = JSON.parse(localStorage.getItem("user"));
               console.log(error);
           }  
           )
+          this.forceUpdate()
       }
     }
     else{
@@ -138,29 +139,14 @@ const user = JSON.parse(localStorage.getItem("user"));
     {
       await BookingService.addEvent(this.state.act_title, moment(data.start).add(2,"hours"), moment(end).add(2,"hours"), this.state.act_length)
       .then(
+        
         (error) =>{
             console.log(error);
         }  
         )
+        //this.forceUpdate()
     }
   }
-
-  sendEvent = async () =>{
-    try {
-    this.state.events.forEach(async event =>
-      await BookingService.addEvent(event.title, event.start, event.end)
-      .then(
-        (error) =>{
-            console.log(error);
-        }  
-        ))
-          window.location.reload();
-      } catch (error){
-        console.log(error);
-      }
-      
-  }
-
 
   render() {
 return(
